@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listar_informe_reporte" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85660ab0-e819-4160-acbe-830db67c3617">
+	<queryString language="SQL">
+		<![CDATA[
+SELECT * FROM listar_informe_reporte(1) 
+AS 
+(
+	codigo_informe 		INTEGER, 
+	codigo_kardex		INTEGER, 
+	codigo_institucion	INTEGER, 
+	codigo_tipo_informe	CHARACTER(1), 
+	codigo_persona_dirigido	INTEGER, 
+	codigo_persona_via	INTEGER, 
+	codigo_persona_de_01	INTEGER, 
+	codigo_persona_de_02	INTEGER, 
+	codigo_persona_de_03	INTEGER, 
+	referencia		TEXT, 
+	fecha_registro		DATE, 
+	fecha_envio		DATE, 
+	diagnostico		TEXT, 
+	sugerencias		TEXT, 
+	referencia_caso		TEXT, 
+	fecha_inicio		DATE, 
+	fecha_fin		DATE, 
+	situacion_habitacional	TEXT, 
+	integracion_familiar	TEXT, 
+	desarrollo_afectivo	TEXT, 
+	historia_social		TEXT, 
+	situacion_actual	TEXT, 
+	fuentes_informacion	TEXT, 
+	descripcion_caso	TEXT, 
+	documentos_adjuntos	TEXT, 
+	nombre_completo_nino	TEXT,
+	fecha_nacimiento_nino	DATE, 
+	edad_nino		INTEGER,
+	nombre_pais		CHARACTER VARYING(250), 
+	nombre_departamento	CHARACTER VARYING(250), 
+	nombre_provincia	CHARACTER VARYING(250), 
+	nombre_lugar		CHARACTER VARYING(250),
+	nombre_completo_A	TEXT,
+	nombre_completo_VIA	TEXT,
+	nombre_completo_de01	TEXT,
+	nombre_completo_de02	TEXT,
+	nombre_completo_de03	TEXT,
+	escolaridad		TEXT, 
+	Domicilio_actual	TEXT,
+	motivo_ingreso		TEXT, 
+	fecha_ingreso		DATE
+)]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

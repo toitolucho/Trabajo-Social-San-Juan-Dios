@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="generar_menu_semanal" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2385f27c-3c36-40f8-a61c-0b50b676bacc">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text"/>
+	<parameter name="Institucion" class="java.lang.String"/>
+	<parameter name="Fecha_Inicio" class="java.util.Date"/>
+	<parameter name="Fecha_Fin" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT * FROM generar_menu_semanal($P{Fecha_Inicio}, $P{Fecha_Fin})
+AS
+(	nombre_categoria	CHARACTER VARYING(200),
+	orden_categoria		INTEGER,
+	hora_inicio		TIME,
+	hora_fin		TIME,
+	nombre_comida		CHARACTER VARYING(250),
+	dia			CHARACTER VARYING,
+	fecha			DATE,
+	cantidad_personas	INTEGER,
+	precio_unitario		DOUBLE PRECISION
+)]]>
+	</queryString>
+	<field name="nombre_categoria" class="java.lang.String"/>
+	<field name="orden_categoria" class="java.lang.Integer"/>
+	<field name="hora_inicio" class="java.sql.Time"/>
+	<field name="hora_fin" class="java.sql.Time"/>
+	<field name="nombre_comida" class="java.lang.String"/>
+	<field name="dia" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="cantidad_personas" class="java.lang.Integer"/>
+	<field name="precio_unitario" class="java.lang.Double"/>
+	<variable name="PrecioTotal" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{cantidad_personas}*$F{precio_unitario}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2d2a453d-8d9c-41cb-98b5-cbdc715bef60" x="129" y="10" width="478" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Institucion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="47408051-c0a2-4f58-b31e-a7da3125891e" x="324" y="30" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MENU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="424efc2f-34d9-4165-9078-521caf0f057f" x="287" y="50" width="17" height="20"/>
+				<textElement/>
+				<text><![CDATA[Del]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="c8197547-85e9-4c3d-827a-a0fd3a1cacf6" x="304" y="50" width="67" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{Fecha_Inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fc359fb1-15c8-4023-8c4b-7d5d93940662" x="371" y="50" width="17" height="20"/>
+				<textElement/>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="54714dc8-9b35-4421-af8f-c66e5392fd6d" x="388" y="50" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{Fecha_Fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="155" splitType="Stretch">
+			<elementGroup>
+				<elementGroup/>
+			</elementGroup>
+			<staticText>
+				<reportElement uuid="757b8e15-709a-4e8f-bb65-b0d93cd6ba82" positionType="FixRelativeToBottom" x="19" y="115" width="339" height="40"/>
+				<textElement>
+					<font size="8" isItalic="true" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<text><![CDATA[Los bebes hasta los 5 meses consumen leche NAN cada tres horas.                                                Los bebes de 5  a 2 años consumen leche entera y papilla de distintas verduras y carnes licuadas           ]]></text>
+			</staticText>
+			<crosstab>
+				<reportElement uuid="ff34b885-c759-4730-8269-7a44a9952b6f" x="0" y="0" width="752" height="115"/>
+				<crosstabDataset isDataPreSorted="true"/>
+				<rowGroup name="nombre_categoria" width="70" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{nombre_categoria}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#C8AE8C" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="7c1ede9f-e02c-47d6-8fc3-1d3f30d81c02" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nombre_categoria}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#C8AE8C" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="120e9168-957a-44a3-ae88-2dcaa582ee55" x="0" y="0" width="70" height="18"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<text><![CDATA[Total por Día y Cantidad en Bs.]]></text>
+							</staticText>
+							<line>
+								<reportElement uuid="56ce0e4d-facc-47b3-9cec-e6ac4f9555ae" style="Crosstab Data Text" x="0" y="18" width="70" height="1"/>
+								<graphicElement>
+									<pen lineWidth="0.5"/>
+								</graphicElement>
+							</line>
+							<staticText>
+								<reportElement uuid="6ade32dc-f161-4576-881c-ce5e5a673b41" x="0" y="19" width="70" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<text><![CDATA[Cantidad Raciones por Día]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="dia" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{dia}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#C8AE8C" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="2681933d-a43c-4a9e-9107-b0622228b918" style="Crosstab Data Text" x="0" y="0" width="83" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#C8AE8C" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="309d1ac1-fdc4-4ebe-a45c-95884be39edf" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Categoría en Bs.]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="PrecioTotalMeasure" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$V{PrecioTotal}]]></measureExpression>
+				</measure>
+				<measure name="cantidad_personasMeasure" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{cantidad_personas}]]></measureExpression>
+				</measure>
+				<measure name="nombre_comidaMeasure" class="java.lang.String">
+					<measureExpression><![CDATA[$F{nombre_comida}]]></measureExpression>
+				</measure>
+				<crosstabCell width="83" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="f7bc3100-6aeb-4081-ade9-63c38db9ee2b" style="Crosstab Data Text" x="4" y="0" width="72" height="25"/>
+							<textElement verticalAlignment="Middle">
+								<font size="8" isItalic="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nombre_comidaMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="83" height="39" rowTotalGroup="nombre_categoria">
+					<cellContents backcolor="#E6DCCF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="a6dba67d-9514-4ee2-95ae-5b03ef58ae91" style="Crosstab Data Text" x="4" y="2" width="75" height="13"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="ad4b8be5-3edd-45b1-aefe-a18f05d66ae3" style="Crosstab Data Text" x="4" y="21" width="75" height="13"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{cantidad_personasMeasure}]]></textFieldExpression>
+						</textField>
+						<line>
+							<reportElement uuid="59addb13-ef96-42ec-879a-b51b29afb949" style="Crosstab Data Text" x="0" y="18" width="83" height="1"/>
+							<graphicElement>
+								<pen lineWidth="0.5"/>
+							</graphicElement>
+						</line>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" columnTotalGroup="dia">
+					<cellContents backcolor="#E6DCCF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="e030cdbf-263f-43c9-b91f-5340f4c1bbe2" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="39" rowTotalGroup="nombre_categoria" columnTotalGroup="dia">
+					<cellContents backcolor="#E6DCCF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="9a465f72-8471-4185-a631-927a249eb5af" style="Crosstab Data Text" x="0" y="1" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

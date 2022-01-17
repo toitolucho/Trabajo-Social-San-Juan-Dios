@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.LugarMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Lugar" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_pais" property="codigoPais" jdbcType="CHAR" />
+    <id column="codigo_departamento" property="codigoDepartamento" jdbcType="CHAR" />
+    <id column="codigo_provincia" property="codigoProvincia" jdbcType="CHAR" />
+    <id column="codigo_lugar" property="codigoLugar" jdbcType="CHAR" />
+    <result column="nombre_lugar" property="nombreLugar" jdbcType="VARCHAR" />
+    
+    <result column="codigo_provincia" property="provincia.codigoProvincia" jdbcType="VARCHAR" />
+    <result column="codigo_departamento" property="provincia.codigoDepartamento" jdbcType="VARCHAR" />
+    <result column="codigo_pais" property="provincia.codigoPais" jdbcType="VARCHAR" />
+    <result column="nombre_lugar" property="provincia.nombreProvincia" jdbcType="VARCHAR" />
+    
+    <result column="codigo_departamento" property="provincia.departamento.codigoDepartamento" jdbcType="VARCHAR" />
+    <result column="codigo_pais" property="provincia.departamento.codigoPais" jdbcType="VARCHAR" />
+    <result column="nombre_departamento" property="provincia.departamento.nombreDepartamento" jdbcType="VARCHAR" />
+    
+    <result column="codigo_pais" property="provincia.departamento.pais.codigoPais" jdbcType="VARCHAR" />
+    <result column="nombre_pais" property="provincia.departamento.pais.nombrePais" jdbcType="VARCHAR" />
+    
+    
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    l.codigo_pais, l.codigo_departamento, l.codigo_provincia, l.codigo_lugar, l.nombre_lugar,
+    p.nombre_provincia, d.nombre_departamento, pa.nombre_pais
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.LugarExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lugares l
+	inner join provincias p
+	on l.codigo_provincia = p.codigo_provincia
+	and l.codigo_departamento = p.codigo_departamento
+	and l.codigo_pais = p.codigo_pais
+	inner join departamentos d
+	on p.codigo_departamento =d.codigo_departamento
+	and p.codigo_pais = d.codigo_pais
+	inner join paises pa
+	on d.codigo_pais = pa.codigo_pais
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.LugarKey" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from lugares l
+	inner join provincias p
+	on l.codigo_provincia = p.codigo_provincia
+	and l.codigo_departamento = p.codigo_departamento
+	and l.codigo_pais = p.codigo_pais
+	inner join departamentos d
+	on p.codigo_departamento =d.codigo_departamento
+	and p.codigo_pais = d.codigo_pais
+	inner join paises pa
+	on d.codigo_pais = pa.codigo_pais
+    where l.codigo_pais = #{codigoPais,jdbcType=CHAR}
+      and l.codigo_departamento = #{codigoDepartamento,jdbcType=CHAR}
+      and l.codigo_provincia = #{codigoProvincia,jdbcType=CHAR}
+      and l.codigo_lugar = #{codigoLugar,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.LugarKey" >
+    <!--
+      
+      
+      
+    -->
+    delete from lugares
+    where codigo_pais = #{codigoPais,jdbcType=CHAR}
+      and codigo_departamento = #{codigoDepartamento,jdbcType=CHAR}
+      and codigo_provincia = #{codigoProvincia,jdbcType=CHAR}
+      and codigo_lugar = #{codigoLugar,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.LugarExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from lugares
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Lugar" >
+    <!--
+      
+      
+      
+    -->
+    insert into lugares (codigo_pais, codigo_departamento, codigo_provincia, 
+      codigo_lugar, nombre_lugar)
+    values (#{codigoPais,jdbcType=CHAR}, #{codigoDepartamento,jdbcType=CHAR}, #{codigoProvincia,jdbcType=CHAR}, 
+      #{codigoLugar,jdbcType=CHAR}, #{nombreLugar,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Lugar" >
+    <!--
+      
+      
+      
+    -->
+    insert into lugares
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoPais != null" >
+        codigo_pais,
+      </if>
+      <if test="codigoDepartamento != null" >
+        codigo_departamento,
+      </if>
+      <if test="codigoProvincia != null" >
+        codigo_provincia,
+      </if>
+      <if test="codigoLugar != null" >
+        codigo_lugar,
+      </if>
+      <if test="nombreLugar != null" >
+        nombre_lugar,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoPais != null" >
+        #{codigoPais,jdbcType=CHAR},
+      </if>
+      <if test="codigoDepartamento != null" >
+        #{codigoDepartamento,jdbcType=CHAR},
+      </if>
+      <if test="codigoProvincia != null" >
+        #{codigoProvincia,jdbcType=CHAR},
+      </if>
+      <if test="codigoLugar != null" >
+        #{codigoLugar,jdbcType=CHAR},
+      </if>
+      <if test="nombreLugar != null" >
+        #{nombreLugar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.LugarExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from lugares
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update lugares
+    <set >
+      <if test="record.codigoPais != null" >
+        codigo_pais = #{record.codigoPais,jdbcType=CHAR},
+      </if>
+      <if test="record.codigoDepartamento != null" >
+        codigo_departamento = #{record.codigoDepartamento,jdbcType=CHAR},
+      </if>
+      <if test="record.codigoProvincia != null" >
+        codigo_provincia = #{record.codigoProvincia,jdbcType=CHAR},
+      </if>
+      <if test="record.codigoLugar != null" >
+        codigo_lugar = #{record.codigoLugar,jdbcType=CHAR},
+      </if>
+      <if test="record.nombreLugar != null" >
+        nombre_lugar = #{record.nombreLugar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update lugares
+    set codigo_pais = #{record.codigoPais,jdbcType=CHAR},
+      codigo_departamento = #{record.codigoDepartamento,jdbcType=CHAR},
+      codigo_provincia = #{record.codigoProvincia,jdbcType=CHAR},
+      codigo_lugar = #{record.codigoLugar,jdbcType=CHAR},
+      nombre_lugar = #{record.nombreLugar,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Lugar" >
+    <!--
+      
+      
+      
+    -->
+    update lugares
+    <set >
+      <if test="nombreLugar != null" >
+        nombre_lugar = #{nombreLugar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_pais = #{codigoPais,jdbcType=CHAR}
+      and codigo_departamento = #{codigoDepartamento,jdbcType=CHAR}
+      and codigo_provincia = #{codigoProvincia,jdbcType=CHAR}
+      and codigo_lugar = #{codigoLugar,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Lugar" >
+    <!--
+      
+      
+      
+    -->
+    update lugares
+    set nombre_lugar = #{nombreLugar,jdbcType=VARCHAR}
+    where codigo_pais = #{codigoPais,jdbcType=CHAR}
+      and codigo_departamento = #{codigoDepartamento,jdbcType=CHAR}
+      and codigo_provincia = #{codigoProvincia,jdbcType=CHAR}
+      and codigo_lugar = #{codigoLugar,jdbcType=CHAR}
+  </update>
+  
+  <update id="obtenerCodigoGeografico" parameterType="Map" statementType="CALLABLE">
+  		{#{codigo_geografico,jdbcType=CHAR,mode=OUT} = call obtener_codigo_geografico(
+  				#{nombre_tabla,jdbcType=VARCHAR,mode=IN},
+  				#{codigo_pais_aux,jdbcType=CHAR,mode=IN},
+  				#{codigo_departamento_aux,jdbcType=CHAR,mode=IN},
+  				#{codigo_provincia_aux,jdbcType=CHAR,mode=IN}
+  				)
+  		}   
+  </update>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="org/quarkbit/trabajosocialsanjuan/dao/config/configuracionInicial.properties"/>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${database.driver}" />
+				<property name="url" value="${database.url}" />
+				<property name="username" value="${database.username}" />
+				<property name="password" value="${database.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/ParentescoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/CategoriaComidaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/ComidaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/DocumentoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/EmpleoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/IngresoTipoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/IngresoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/EgresoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/InstitucionMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PartidaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/ProveedorMapper.xml" />
+		
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PaisMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/DepartamentoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/ProvinciaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/LugarMapper.xml" />
+		
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PersonaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PersonaKardexMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PersonaKardexFamiliarMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PersonaKardexDocumentoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PersonaDatosNacimientoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/UsuarioMapper.xml" />
+		
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/MenuComidaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/MenuComidaDetalleMapper.xml" />
+		
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/InformeMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/InformeDetalleMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/InformePsicologicoMapper.xml" />
+		
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/ConsultaMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/HistorialClinicoConsultaDetalleMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/HistorialClinicoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PropiedadHistorialClinicoMapper.xml" />
+		<mapper resource="org/quarkbit/trabajosocialsanjuan/dao/persistence/PropiedadTipoMapper.xml" />
+		
+		
+<!-- 		<mapper resource="dao/mappers/ModuloMapper.xml" /> -->
+<!-- 		<mapper resource="mappers/EstudianteMapper.xml" /> -->
+<!-- 		<mapper resource="mappers/ModuloMapper.xml" />		 -->
+<!-- 		<mapper resource="archivo/xml/MedicamentosUnidadesMapper.xml" /> -->
+	</mappers>
+</configuration>

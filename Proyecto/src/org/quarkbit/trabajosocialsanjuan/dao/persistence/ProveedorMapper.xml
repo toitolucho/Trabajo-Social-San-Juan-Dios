@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.ProveedorMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Proveedor" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_proveedor" property="codigoProveedor" jdbcType="INTEGER" />
+    <result column="nombre_proveedor" property="nombreProveedor" jdbcType="VARCHAR" />
+    <result column="estado_proveedor" property="estadoProveedor" jdbcType="CHAR" />
+    <result column="nit_proveedor" property="nitProveedor" jdbcType="CHAR" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    codigo_proveedor, nombre_proveedor, estado_proveedor, nit_proveedor, descripcion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.ProveedorExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from proveedores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from proveedores
+    where codigo_proveedor = #{codigoProveedor,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from proveedores
+    where codigo_proveedor = #{codigoProveedor,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.ProveedorExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from proveedores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Proveedor" >
+    <!--
+      
+      
+      
+    -->
+    insert into proveedores (codigo_proveedor, nombre_proveedor, 
+      estado_proveedor, nit_proveedor, descripcion
+      )
+    values (DEFAULT, #{nombreProveedor,jdbcType=VARCHAR}, 
+      #{estadoProveedor,jdbcType=CHAR}, #{nitProveedor,jdbcType=CHAR}, #{descripcion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Proveedor" >
+    <!--
+      
+      
+      
+    -->
+    insert into proveedores
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoProveedor != null" >
+        codigo_proveedor,
+      </if>
+      <if test="nombreProveedor != null" >
+        nombre_proveedor,
+      </if>
+      <if test="estadoProveedor != null" >
+        estado_proveedor,
+      </if>
+      <if test="nitProveedor != null" >
+        nit_proveedor,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoProveedor != null" >
+        #{codigoProveedor,jdbcType=INTEGER},
+      </if>
+      <if test="nombreProveedor != null" >
+        #{nombreProveedor,jdbcType=VARCHAR},
+      </if>
+      <if test="estadoProveedor != null" >
+        #{estadoProveedor,jdbcType=CHAR},
+      </if>
+      <if test="nitProveedor != null" >
+        #{nitProveedor,jdbcType=CHAR},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.ProveedorExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from proveedores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update proveedores
+    <set >
+      <if test="record.codigoProveedor != null" >
+        codigo_proveedor = #{record.codigoProveedor,jdbcType=INTEGER},
+      </if>
+      <if test="record.nombreProveedor != null" >
+        nombre_proveedor = #{record.nombreProveedor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estadoProveedor != null" >
+        estado_proveedor = #{record.estadoProveedor,jdbcType=CHAR},
+      </if>
+      <if test="record.nitProveedor != null" >
+        nit_proveedor = #{record.nitProveedor,jdbcType=CHAR},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update proveedores
+    set codigo_proveedor = #{record.codigoProveedor,jdbcType=INTEGER},
+      nombre_proveedor = #{record.nombreProveedor,jdbcType=VARCHAR},
+      estado_proveedor = #{record.estadoProveedor,jdbcType=CHAR},
+      nit_proveedor = #{record.nitProveedor,jdbcType=CHAR},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Proveedor" >
+    <!--
+      
+      
+      
+    -->
+    update proveedores
+    <set >
+      <if test="nombreProveedor != null" >
+        nombre_proveedor = #{nombreProveedor,jdbcType=VARCHAR},
+      </if>
+      <if test="estadoProveedor != null" >
+        estado_proveedor = #{estadoProveedor,jdbcType=CHAR},
+      </if>
+      <if test="nitProveedor != null" >
+        nit_proveedor = #{nitProveedor,jdbcType=CHAR},
+      </if>
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_proveedor = #{codigoProveedor,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Proveedor" >
+    <!--
+      
+      
+      
+    -->
+    update proveedores
+    set nombre_proveedor = #{nombreProveedor,jdbcType=VARCHAR},
+      estado_proveedor = #{estadoProveedor,jdbcType=CHAR},
+      nit_proveedor = #{nitProveedor,jdbcType=CHAR},
+      descripcion = #{descripcion,jdbcType=VARCHAR}
+    where codigo_proveedor = #{codigoProveedor,jdbcType=INTEGER}
+  </update>
+  
+  <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('proveedores')}   
+	</update>
+</mapper>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listar_informe_reporte_A" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aad1bb12-d91a-4671-abca-4ade81abe42d">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_informe_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM listar_informe_reporte($P{codigo_informe_aux})
+AS
+(
+	codigo_informe 		INTEGER,
+	codigo_kardex		INTEGER,
+	codigo_institucion	INTEGER,
+	codigo_tipo_informe	CHARACTER(1),
+	codigo_persona_dirigido	INTEGER,
+	codigo_persona_via	INTEGER,
+	codigo_persona_de_01	INTEGER,
+	codigo_persona_de_02	INTEGER,
+	codigo_persona_de_03	INTEGER,
+	referencia		TEXT,
+	fecha_registro		DATE,
+	fecha_envio		DATE,
+	diagnostico		TEXT,
+	sugerencias		TEXT,
+	referencia_caso		TEXT,
+	fecha_inicio		DATE,
+	fecha_fin		DATE,
+	situacion_habitacional	TEXT,
+	integracion_familiar	TEXT,
+	desarrollo_afectivo	TEXT,
+	historia_social		TEXT,
+	situacion_actual	TEXT,
+	fuentes_informacion	TEXT,
+	descripcion_caso	TEXT,
+	documentos_adjuntos	TEXT,
+	nombre_completo_nino	TEXT,
+	fecha_nacimiento_nino	DATE,
+	edad_nino		INTEGER,
+	nombre_pais		CHARACTER VARYING(250),
+	nombre_departamento	CHARACTER VARYING(250),
+	nombre_provincia	CHARACTER VARYING(250),
+	nombre_lugar		CHARACTER VARYING(250),
+	nombre_completo_A	TEXT,
+	nombre_completo_VIA	TEXT,
+	nombre_completo_de01	TEXT,
+	nombre_completo_de02	TEXT,
+	nombre_completo_de03	TEXT,
+	escolaridad		TEXT,
+	Domicilio_actual	TEXT,
+	motivo_ingreso		TEXT,
+	fecha_ingreso		DATE,
+	nombre_empleoA		TEXT,
+	nombre_empleoVIA	TEXT,
+	nombre_empleoDe01	TEXT,
+	nombre_empleoDe02	TEXT,
+	nombre_empleoDe03	TEXT
+)]]>
+	</queryString>
+	<field name="codigo_informe" class="java.lang.Integer"/>
+	<field name="codigo_kardex" class="java.lang.Integer"/>
+	<field name="codigo_institucion" class="java.lang.Integer"/>
+	<field name="codigo_tipo_informe" class="java.lang.String"/>
+	<field name="codigo_persona_dirigido" class="java.lang.Integer"/>
+	<field name="codigo_persona_via" class="java.lang.Integer"/>
+	<field name="codigo_persona_de_01" class="java.lang.Integer"/>
+	<field name="codigo_persona_de_02" class="java.lang.Integer"/>
+	<field name="codigo_persona_de_03" class="java.lang.Integer"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<field name="fecha_envio" class="java.sql.Date"/>
+	<field name="diagnostico" class="java.lang.String"/>
+	<field name="sugerencias" class="java.lang.String"/>
+	<field name="referencia_caso" class="java.lang.String"/>
+	<field name="fecha_inicio" class="java.sql.Date"/>
+	<field name="fecha_fin" class="java.sql.Date"/>
+	<field name="situacion_habitacional" class="java.lang.String"/>
+	<field name="integracion_familiar" class="java.lang.String"/>
+	<field name="desarrollo_afectivo" class="java.lang.String"/>
+	<field name="historia_social" class="java.lang.String"/>
+	<field name="situacion_actual" class="java.lang.String"/>
+	<field name="fuentes_informacion" class="java.lang.String"/>
+	<field name="descripcion_caso" class="java.lang.String"/>
+	<field name="documentos_adjuntos" class="java.lang.String"/>
+	<field name="nombre_completo_nino" class="java.lang.String"/>
+	<field name="fecha_nacimiento_nino" class="java.sql.Date"/>
+	<field name="edad_nino" class="java.lang.Integer"/>
+	<field name="nombre_pais" class="java.lang.String"/>
+	<field name="nombre_departamento" class="java.lang.String"/>
+	<field name="nombre_provincia" class="java.lang.String"/>
+	<field name="nombre_lugar" class="java.lang.String"/>
+	<field name="nombre_completo_a" class="java.lang.String"/>
+	<field name="nombre_completo_via" class="java.lang.String"/>
+	<field name="nombre_completo_de01" class="java.lang.String"/>
+	<field name="nombre_completo_de02" class="java.lang.String"/>
+	<field name="nombre_completo_de03" class="java.lang.String"/>
+	<field name="escolaridad" class="java.lang.String"/>
+	<field name="domicilio_actual" class="java.lang.String"/>
+	<field name="motivo_ingreso" class="java.lang.String"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="nombre_empleoa" class="java.lang.String"/>
+	<field name="nombre_empleovia" class="java.lang.String"/>
+	<field name="nombre_empleode01" class="java.lang.String"/>
+	<field name="nombre_empleode02" class="java.lang.String"/>
+	<field name="nombre_empleode03" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="247" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9e9b2b6c-bb43-4970-a55c-6eff44434b9e" x="122" y="4" width="327" height="40"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME PSICO SOCIAL DE SEGUIMIENTO DE CONVIVIENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="329576a4-2973-466f-8d1b-5746af7b9f33" x="43" y="55" width="58" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[A:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9dbbd100-8be9-40a5-8558-2a0024780e80" x="101" y="55" width="428" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_a}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b7ee1d62-21a3-45e1-bbf0-dcb5798f81db" x="101" y="67" width="428" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleoa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1d3ee930-966c-4c03-8369-dc69b2ece256" x="43" y="85" width="58" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[VIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8e5efa64-954d-4212-b9c3-8878a9c77423" x="101" y="85" width="428" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_via}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="6cd1d754-7221-478e-a98d-25da066f17d6" mode="Transparent" x="101" y="97" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleovia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="422dc8f9-98ad-4071-8f11-a304072fa6a1" x="43" y="117" width="58" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DE:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="03b7dda0-d46e-4b75-b584-b797a7b3ace3" mode="Transparent" x="101" y="117" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_de01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="b07cf7aa-dd58-4eaf-b5d7-2fd93e7bee57" mode="Transparent" x="101" y="145" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_de02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="6cdf17df-43ea-4811-8b6f-789a69c54423" mode="Transparent" x="101" y="174" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_de03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="c751a23b-2961-4b6e-b899-51e78ae07fb8" mode="Transparent" x="101" y="129" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleode01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="d18caab8-692d-4397-aeab-8903a81151cf" mode="Transparent" x="101" y="157" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleode02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="5b6818fe-8cc9-4ee9-96c5-11340ce5e496" mode="Transparent" x="101" y="186" width="428" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleode03}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aa7f212f-1a8b-457c-b55a-71817459c5a1" x="43" y="205" width="58" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[REF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="384bad20-3e53-4ee0-bcee-3f0265e9d7c8" x="101" y="205" width="428" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="8f4a20f2-81b6-431f-8b63-ffa22f09aca5" x="101" y="224" width="428" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_envio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f16ebbb2-ed95-415c-8a64-f89339109951" x="43" y="224" width="58" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA :]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b4295297-4973-45ae-98c7-4962f8f8a9be" x="43" y="245" width="486" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="302">
+			<staticText>
+				<reportElement uuid="51c30ffa-862c-4a6c-af8f-6ffc4a2f575b" positionType="Float" x="43" y="0" width="150" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[I. REFERENCIA DEL CASO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="34718de8-3dcf-4846-850f-a567c94b97e3" positionType="Float" x="43" y="17" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia_caso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0110009a-e208-41de-959c-3ebee0a9aa59" positionType="Float" x="43" y="31" width="265" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[II. DATOS DE IDENTIFICACION DE LA NIÑO(A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="82d7a1fe-fd15-46d0-9776-d52e44f46c0c" positionType="Float" x="43" y="51" width="115" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombre y Apellidos :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b71ae4e3-f00c-4726-8aac-b41182a6c066" positionType="Float" x="43" y="66" width="115" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Lugar y Fecha de Nacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1f9351ec-cbd2-4142-a04f-7132644e6bf1" positionType="Float" x="43" y="83" width="115" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c61a1008-1b3c-488f-a3e9-a1a7b5ce701e" positionType="Float" x="168" y="51" width="299" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_nino}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement uuid="9af57446-5028-4a95-8715-4d51ffe966c7" positionType="Float" x="401" y="66" width="83" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento_nino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c0b1c45-f927-40b7-97b4-688257da5c09" positionType="Float" x="168" y="83" width="100" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad_nino} + ' años']]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d99d70cd-a19e-489a-8d52-b14c50c27ac7" positionType="Float" x="168" y="66" width="233" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_lugar} + '-' + $F{nombre_provincia} + '-'+ $F{nombre_departamento}+ '-' + $F{nombre_pais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="05b1960a-1777-4aa3-98ca-46a60af53a73" positionType="Float" x="43" y="99" width="265" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[III. FECHA DE SEGUIMIENTO]]></text>
+			</staticText>
+			<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement uuid="5078f744-ebe0-41b8-8571-f47fad3a0884" positionType="Float" isPrintRepeatedValues="false" x="43" y="117" width="259" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA['Del ' + $F{fecha_inicio} + ' al ' + $F{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="49b025bc-1953-4e1c-b593-e218df06bc2f" positionType="Float" x="43" y="132" width="265" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IV. PROCESO PSICO SOCIAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5e2c655d-d0c2-4926-b475-cb17cff66ab1" positionType="Float" x="43" y="161" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacion_habitacional}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e5c80c4e-ed4a-4dfe-94c2-260cd4bc1137" positionType="Float" x="60" y="146" width="110" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[a) Situación Habitacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4b5302cb-fd40-48a9-b255-650cf0fececb" positionType="Float" x="60" y="177" width="133" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[b) Integración en el Medio Familiar]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="07f905f6-2e80-4643-83c0-f88f75513244" positionType="Float" x="43" y="189" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{integracion_familiar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6b249125-c8ea-4c2a-9aed-0615b4f8e45c" positionType="Float" x="60" y="205" width="172" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[c) Desarrollo emocional, Afectivo y Racional]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="26a126ba-9772-479b-b89f-5eaf407faa18" positionType="Float" x="43" y="217" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desarrollo_afectivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5e454f6f-319a-4ef4-aabd-08dcd9c7dd72" positionType="Float" x="43" y="233" width="265" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[V. DIAGNOSTICO PSICO SOCIAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="694098de-4f11-4a84-93e4-df9874acfdff" positionType="Float" x="43" y="247" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="70993822-2c91-495b-aa2f-f01a33661263" positionType="Float" x="43" y="273" width="265" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VI. SUGERENCIA y/o RECOMENDACIÓN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c6385da8-55ab-457c-9fac-24977c1748eb" positionType="Float" x="43" y="287" width="486" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sugerencias}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

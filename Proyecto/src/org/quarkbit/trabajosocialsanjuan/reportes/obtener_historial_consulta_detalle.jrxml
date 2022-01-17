@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_historial_consulta_detalle" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d279aa6-699b-42d8-bda3-1b5f8b176878">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numero_hc_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numero_consulta_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Proyectos\\TrabajoSocialSanJuan\\Proyecto\\src\\org\\quarkbit\\trabajosocialsanjuan\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_historial_consulta($P{numero_hc_aux}, $P{numero_consulta_aux}, NULL, NULL)
+AS
+(
+  numero_hc		INTEGER,
+  numero_consulta	INTEGER,
+  motivo		CHARACTER VARYING(100),
+  fecha_consulta	DATE,
+  tipo_consulta		TEXT,
+  diagnostico		TEXT,
+  observaciones		TEXT,
+  paterno		CHARACTER VARYING(40),
+  materno		CHARACTER VARYING(40),
+  nombres		CHARACTER VARYING(80),
+  nombre_completo	TEXT,
+  sexo			TEXT,
+  fecha_nacimiento	DATE,
+  edad			INT,
+  grupo_sanguinio	CHARACTER VARYING(10),
+  fecha_registro	DATE
+)]]>
+	</queryString>
+	<field name="numero_hc" class="java.lang.Integer"/>
+	<field name="numero_consulta" class="java.lang.Integer"/>
+	<field name="motivo" class="java.lang.String"/>
+	<field name="fecha_consulta" class="java.sql.Date"/>
+	<field name="tipo_consulta" class="java.lang.String"/>
+	<field name="diagnostico" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="paterno" class="java.lang.String"/>
+	<field name="materno" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="nombre_completo" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="grupo_sanguinio" class="java.lang.String"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<group name="nombre_completo">
+		<groupExpression><![CDATA[$F{nombre_completo}]]></groupExpression>
+		<groupHeader>
+			<band height="48">
+				<textField>
+					<reportElement uuid="36015d75-e26b-4244-b6c0-ade82f367c06" x="0" y="0" width="389" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Nombre paciente: ' + $F{nombre_completo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="cd58a59d-89f1-4ba7-82b0-9b132ea6badc" x="389" y="0" width="100" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Nº Consulta :' + $F{numero_consulta}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="393ef580-27ee-459c-8c81-eaa4886e6b92" x="0" y="12" width="572" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Motivo :' + $F{motivo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement uuid="e57dc10c-2727-4308-b09f-0a7342047cdb" x="489" y="0" width="83" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha_consulta}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="2b8fcf52-0c1f-4fa6-a0c7-0f7ee9a87750" x="0" y="24" width="572" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Diagnóstico : '+ $F{diagnostico}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="02ec6317-128e-4dcd-b2e6-1d89eee46f80" x="0" y="36" width="572" height="12"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Observaciones : ' +$F{observaciones}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8b9d09af-c8e7-45a9-b7ad-f099b4cc800f" x="233" y="0" width="100" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="113" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="a0b38ca3-9c69-4b9a-ada6-3a557fd6c17c" x="0" y="0" width="572" height="113"/>
+				<subreportParameter name="numero_hc_aux">
+					<subreportParameterExpression><![CDATA[$P{numero_hc_aux}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numero_consulta_aux">
+					<subreportParameterExpression><![CDATA[$P{numero_consulta_aux}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "obtener_historial_clinico_detalle.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>

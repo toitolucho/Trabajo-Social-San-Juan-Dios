@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b65b0eb-2d61-4615-9139-87631d299504">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="Fecha_Inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM generar_menu_semanal($P{Fecha_Inicio}, $P{Fecha_Fin})
+AS
+(	nombre_categoria	CHARACTER VARYING(200),
+	orden_categoria		INTEGER,
+	hora_inicio		TIME,
+	hora_fin		TIME,
+	nombre_comida		CHARACTER VARYING(250),
+	dia			CHARACTER VARYING,
+	fecha			DATE,
+	cantidad_personas	INTEGER,
+	precio_unitario		DOUBLE PRECISION
+)]]>
+	</queryString>
+	<field name="nombre_categoria" class="java.lang.String"/>
+	<field name="orden_categoria" class="java.lang.Integer"/>
+	<field name="hora_inicio" class="java.sql.Time"/>
+	<field name="hora_fin" class="java.sql.Time"/>
+	<field name="nombre_comida" class="java.lang.String"/>
+	<field name="dia" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="cantidad_personas" class="java.lang.Integer"/>
+	<field name="precio_unitario" class="java.lang.Double"/>
+	<variable name="PrecioTotal" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{cantidad_personas}*$F{precio_unitario}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="8" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="4" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="2" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="5" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="124" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="4a04bcab-2af4-45df-8ba2-87367352dcb7" x="0" y="0" width="572" height="124"/>
+				<rowGroup name="nombre_categoria" width="70" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{nombre_categoria}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="b4ec198b-4b06-4791-8f9b-af6742b06419" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{nombre_categoria}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="4ba999a1-abdf-4436-bc57-e589596965c5" x="0" y="0" width="70" height="15"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total nombre_categoria]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="dia" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{dia}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="533c8a26-2776-42e9-b5cd-1f710add9651" style="Crosstab Data Text" x="0" y="0" width="50" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{dia}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="c434096b-f763-440d-b14b-2a7d77ebc94e" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total dia]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="PrecioTotalMeasure" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$V{PrecioTotal}]]></measureExpression>
+				</measure>
+				<measure name="cantidad_personasMeasure" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{cantidad_personas}]]></measureExpression>
+				</measure>
+				<measure name="nombre_comidaMeasure" class="java.lang.String">
+					<measureExpression><![CDATA[$F{nombre_comida}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="a0b48eb5-be73-415b-bebd-fcda3f521d8a" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{nombre_comidaMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="39" rowTotalGroup="nombre_categoria">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="de85a60f-ab34-4901-916b-d53bfafc9e6f" style="Crosstab Data Text" x="0" y="0" width="50" height="19"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="ad4b8be5-3edd-45b1-aefe-a18f05d66ae3" style="Crosstab Data Text" x="0" y="19" width="50" height="19"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{cantidad_personasMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="dia">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="c393fd3a-558b-48a5-bb7b-a12941526af0" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="39" rowTotalGroup="nombre_categoria" columnTotalGroup="dia">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="5302ee67-ee92-4750-8dee-b0120598e673" style="Crosstab Data Text" x="0" y="0" width="50" height="19"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{PrecioTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_reporte_egresos_ingresos01" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ddc485dc-2388-452c-ac5c-bf459db2981e">
+	<property name="ireport.zoom" value="1.771561000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigo_ingreso_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_ingreso_tipo_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_proveedor_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_partida_aux" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_reporte_egresos_ingresos($P{codigo_ingreso_aux}, $P{codigo_ingreso_tipo_aux}, $P{codigo_proveedor_aux}, $P{codigo_partida_aux},$P{fecha_inicio} ,$P{fecha_fin})
+AS
+(
+	nombre_ingreso	CHARACTER VARYING(250),
+	fecha_ingreso	DATE,
+	monto_ingreso	DOUBLE PRECISION,
+	monto_actual	DOUBLE PRECISION,
+	nombre_ingreso_tipo CHARACTER VARYING(150),
+	codigo_ingreso_tipo INTEGER,
+	nombre_partida	CHARACTER VARYING(250),
+	nombre_proveedor CHARACTER VARYING(200),
+	nit_proveedor	CHARACTER(15),
+	fecha_egreso	DATE,
+	codigo_egreso	INTEGER,
+	codigo_ingreso	INTEGER,
+	codigo_partida	CHARACTER(10),
+	nro_factura	INTEGER,
+	monto_salida	DOUBLE PRECISION,
+	observaciones 	TEXT
+);]]>
+	</queryString>
+	<field name="nombre_ingreso" class="java.lang.String"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="monto_ingreso" class="java.lang.Double"/>
+	<field name="monto_actual" class="java.lang.Double"/>
+	<field name="nombre_ingreso_tipo" class="java.lang.String"/>
+	<field name="codigo_ingreso_tipo" class="java.lang.Integer"/>
+	<field name="nombre_partida" class="java.lang.String"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="nit_proveedor" class="java.lang.String"/>
+	<field name="fecha_egreso" class="java.sql.Date"/>
+	<field name="codigo_egreso" class="java.lang.Integer"/>
+	<field name="codigo_ingreso" class="java.lang.Integer"/>
+	<field name="codigo_partida" class="java.lang.String"/>
+	<field name="nro_factura" class="java.lang.Integer"/>
+	<field name="monto_salida" class="java.lang.Double"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<variable name="Total_Monto_Salida" class="java.lang.Double" resetType="Group" resetGroup="codigo_ingreso" calculation="Sum">
+		<variableExpression><![CDATA[$F{monto_salida}]]></variableExpression>
+	</variable>
+	<variable name="Saldo_Total_Ingreo" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{monto_ingreso}-$V{Total_Monto_Salida}]]></variableExpression>
+	</variable>
+	<group name="codigo_ingreso">
+		<groupExpression><![CDATA[$F{codigo_ingreso}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<textField>
+					<reportElement uuid="bb2db471-d2ab-45b8-8c3e-78c227afa97b" style="SubTitle" mode="Opaque" x="0" y="0" width="572" height="15" forecolor="#333333" backcolor="#999999"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA['Ingreso: ' + $F{nombre_ingreso} +  '                                     en ' + $F{fecha_ingreso} + ' por ' +$F{monto_ingreso}  +' Bs']]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="881fcfde-13bc-463f-b648-2ef542aac804" style="Column header" x="0" y="15" width="126" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Partida]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7a56974f-40eb-4ec7-9ef0-1841c7b493d3" style="Column header" x="126" y="15" width="144" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Proveedor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="cd68494d-aeac-4bd9-9927-e84257e28ffd" style="Column header" x="270" y="15" width="96" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Fecha de egreso]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="22101750-2bdd-4b8a-a0b0-579394e3c593" style="Column header" x="464" y="15" width="108" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Monto de salida]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="aba47b7a-040a-4793-b019-23f7c0d11a67" style="Column header" x="366" y="15" width="98" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Nº de factura]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="7b416fb6-dfc1-4922-b72d-55e7b0187744" positionType="FixRelativeToBottom" x="0" y="25" width="572" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<textField>
+					<reportElement uuid="3f435ab3-9e6f-4c68-b07c-126ba90d8918" x="470" y="0" width="95" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Total_Monto_Salida}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c41f2c3c-88ca-4dbb-8415-11fea14f83bd" x="355" y="0" width="108" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Total Egresos: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="64db557a-19bc-4232-bf51-0e6396020969" x="470" y="11" width="95" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Saldo_Total_Ingreo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="0a9e2fcb-a80b-46db-ac95-d2ffbcd3d689" x="356" y="11" width="108" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Actual: ]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="0dbe9b0f-27f3-4751-9704-ea51b7c17183" positionType="FixRelativeToBottom" x="0" y="23" width="572" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4c0e7971-c3ac-4bb4-a383-7c033f5255fa" style="Title" x="100" y="0" width="364" height="33" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Informe general ingresos y gastos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0dcaf5e1-0dc0-4665-9309-b5d0614712b0" x="211" y="33" width="20" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Del]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3d509d2d-a029-4263-bb43-1d0efd828601" x="281" y="33" width="13" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="adf53fdc-36c9-4294-b770-67aa83f0b8d3" x="296" y="33" width="55" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="bb27cf18-9244-43c9-bcdf-6c2b11a794ff" x="230" y="33" width="51" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_inicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<line>
+				<reportElement uuid="a8e2c43f-0daa-4a69-8b50-d5794be7a79d" positionType="FixRelativeToBottom" x="0" y="12" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="859434dd-6a73-451f-9798-4c9398a89197" style="Detail" x="2" y="0" width="120" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_partida}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f1005c84-e128-4a5d-bdfd-72e5f8f47998" style="Detail" x="136" y="0" width="134" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4200e880-4137-4596-be08-17d2e1986ddb" style="Detail" x="470" y="0" width="95" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_salida}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="daf66082-e210-4c31-b59e-f7dac911cdb9" style="Detail" x="372" y="0" width="92" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_factura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="3605623a-1803-4363-aede-9261391e0c3d" style="Detail" x="281" y="0" width="74" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_egreso}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="bf40cf5f-4b22-4d15-a718-3c5dcb165fb0" positionType="FixRelativeToBottom" x="367" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="19181e2f-84c6-4feb-9b4b-f2ff04a0e6eb" positionType="FixRelativeToBottom" x="0" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="bf194f5a-12b7-48c4-82c0-86a8f9f40aaa" positionType="FixRelativeToBottom" x="269" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="d5104f7e-7d75-42e3-bc6f-e9d71c015ecc" positionType="FixRelativeToBottom" x="128" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="faf0f888-591d-47ba-9a91-d6dbe686df9d" positionType="FixRelativeToBottom" x="463" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="44fc58ae-f7c9-4953-b8a0-a36963a9ed9e" positionType="FixRelativeToBottom" x="572" y="0" width="1" height="13"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="10" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c93e5f54-1e08-43ae-9588-6ab1233339ab" style="Column header" x="433" y="0" width="80" height="8"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a77fa0f4-ae2d-4e6b-b8d7-2bad8ab66590" style="Column header" x="513" y="0" width="40" height="8"/>
+				<textElement>
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fc5e4b96-b5c2-4578-a4a9-b1c73c5402dd" style="Column header" x="0" y="0" width="197" height="8"/>
+				<textElement>
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

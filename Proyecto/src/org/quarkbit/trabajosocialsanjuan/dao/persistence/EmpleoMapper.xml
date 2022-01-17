@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.EmpleoMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Empleo" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_empleo" property="codigoEmpleo" jdbcType="INTEGER" />
+    <result column="nombre_empleo" property="nombreEmpleo" jdbcType="VARCHAR" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    codigo_empleo, nombre_empleo, descripcion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EmpleoExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from empleos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from empleos
+    where codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from empleos
+    where codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EmpleoExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from empleos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Empleo" >
+    <!--
+      
+      
+      
+    -->
+    insert into empleos (codigo_empleo, nombre_empleo, descripcion
+      )
+    values (DEFAULT, #{nombreEmpleo,jdbcType=VARCHAR}, #{descripcion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Empleo" >
+    <!--
+      
+      
+      
+    -->
+    insert into empleos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoEmpleo != null" >
+        codigo_empleo,
+      </if>
+      <if test="nombreEmpleo != null" >
+        nombre_empleo,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoEmpleo != null" >
+        #{codigoEmpleo,jdbcType=INTEGER},
+      </if>
+      <if test="nombreEmpleo != null" >
+        #{nombreEmpleo,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EmpleoExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from empleos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update empleos
+    <set >
+      <if test="record.codigoEmpleo != null" >
+        codigo_empleo = #{record.codigoEmpleo,jdbcType=INTEGER},
+      </if>
+      <if test="record.nombreEmpleo != null" >
+        nombre_empleo = #{record.nombreEmpleo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update empleos
+    set codigo_empleo = #{record.codigoEmpleo,jdbcType=INTEGER},
+      nombre_empleo = #{record.nombreEmpleo,jdbcType=VARCHAR},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Empleo" >
+    <!--
+      
+      
+      
+    -->
+    update empleos
+    <set >
+      <if test="nombreEmpleo != null" >
+        nombre_empleo = #{nombreEmpleo,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Empleo" >
+    <!--
+      
+      
+      
+    -->
+    update empleos
+    set nombre_empleo = #{nombreEmpleo,jdbcType=VARCHAR},
+      descripcion = #{descripcion,jdbcType=VARCHAR}
+    where codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER}
+  </update>
+  
+  <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('empleos')}   
+  </update>
+</mapper>

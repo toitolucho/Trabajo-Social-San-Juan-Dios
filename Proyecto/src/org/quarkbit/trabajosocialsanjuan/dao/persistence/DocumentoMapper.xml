@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.DocumentoMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Documento" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_documento" property="codigoDocumento" jdbcType="INTEGER" />
+    <result column="nombre_documento" property="nombreDocumento" jdbcType="VARCHAR" />
+    <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    codigo_documento, nombre_documento, descripcion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.DocumentoExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from documentos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from documentos
+    where codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from documentos
+    where codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.DocumentoExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from documentos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Documento" >
+    <!--
+      
+      
+      
+    -->
+    insert into documentos (codigo_documento, nombre_documento, 
+      descripcion)
+    values (DEFAULT, #{nombreDocumento,jdbcType=VARCHAR}, 
+      #{descripcion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Documento" >
+    <!--
+      
+      
+      
+    -->
+    insert into documentos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoDocumento != null" >
+        codigo_documento,
+      </if>
+      <if test="nombreDocumento != null" >
+        nombre_documento,
+      </if>
+      <if test="descripcion != null" >
+        descripcion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoDocumento != null" >
+        #{codigoDocumento,jdbcType=INTEGER},
+      </if>
+      <if test="nombreDocumento != null" >
+        #{nombreDocumento,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null" >
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.DocumentoExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from documentos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update documentos
+    <set >
+      <if test="record.codigoDocumento != null" >
+        codigo_documento = #{record.codigoDocumento,jdbcType=INTEGER},
+      </if>
+      <if test="record.nombreDocumento != null" >
+        nombre_documento = #{record.nombreDocumento,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descripcion != null" >
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update documentos
+    set codigo_documento = #{record.codigoDocumento,jdbcType=INTEGER},
+      nombre_documento = #{record.nombreDocumento,jdbcType=VARCHAR},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Documento" >
+    <!--
+      
+      
+      
+    -->
+    update documentos
+    <set >
+      <if test="nombreDocumento != null" >
+        nombre_documento = #{nombreDocumento,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null" >
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Documento" >
+    <!--
+      
+      
+      
+    -->
+    update documentos
+    set nombre_documento = #{nombreDocumento,jdbcType=VARCHAR},
+      descripcion = #{descripcion,jdbcType=VARCHAR}
+    where codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </update>
+  
+   <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('documentos')}   
+  </update>
+</mapper>

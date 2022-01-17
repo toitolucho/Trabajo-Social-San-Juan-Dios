@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_reporte_egresos_ingresos03" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="220634b9-9318-4f2e-853b-b88b3f9932b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM obtener_reporte_egresos_ingresos(NULL, NULL, NULL, NULL, null , null) 
+AS 
+(	
+	nombre_ingreso	CHARACTER VARYING(250),
+	fecha_ingreso	DATE,	
+	monto_ingreso	DOUBLE PRECISION,
+	monto_actual	DOUBLE PRECISION,
+	nombre_ingreso_tipo CHARACTER VARYING(150),
+	codigo_ingreso_tipo INTEGER,
+	nombre_partida	CHARACTER VARYING(250),
+	nombre_proveedor CHARACTER VARYING(200),
+	nit_proveedor	CHARACTER(15),
+	fecha_egreso	DATE,		
+	codigo_egreso	INTEGER,
+	codigo_ingreso	INTEGER,
+	codigo_partida	CHARACTER(10),
+	nro_factura	INTEGER,
+	monto_salida	DOUBLE PRECISION,
+	observaciones 	TEXT
+);]]>
+	</queryString>
+	<field name="nombre_ingreso" class="java.lang.String"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="monto_ingreso" class="java.lang.Double"/>
+	<field name="monto_actual" class="java.lang.Double"/>
+	<field name="nombre_ingreso_tipo" class="java.lang.String"/>
+	<field name="nombre_partida" class="java.lang.String"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="nro_factura" class="java.lang.Integer"/>
+	<field name="monto_salida" class="java.lang.Double"/>
+	<group name="nombre_ingreso_tipo">
+		<groupExpression><![CDATA[$F{nombre_ingreso_tipo}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement uuid="ef1d7a20-0045-4c87-b49b-93d73060ad08" style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#333333"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre_ingreso_tipo}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement uuid="008a7aeb-2083-49a1-b75f-c036aa22cbb4" mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="nombre_ingreso">
+		<groupExpression><![CDATA[$F{nombre_ingreso}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement uuid="ae41e4c3-e7d0-4c38-bddd-269c289f7615" style="SubTitle" x="0" y="4" width="460" height="20"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre_ingreso}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="0a122b63-0834-43f4-819b-95033af47f8a" x="-20" y="0" width="595" height="64"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="e3bcd898-42a4-41f5-a826-cdffabeb5b2e" style="Title" x="0" y="5" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Wood Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43194173-70ea-4101-a561-316f98ba56cf" style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Wood SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="f48cc14c-81fd-4ee3-8bce-690c89801608" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="a76d330f-eb58-4f3e-ad88-0694dfde3fbd" style="Column header" x="0" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[fecha_ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e37da449-6e46-4e8d-9453-16889525124b" style="Column header" x="79" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[monto_ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="afec7013-e202-47d3-b5d4-3df61b62fb85" style="Column header" x="158" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[monto_actual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bd7a1e07-7a9b-41b1-94c2-8b0f2b5a2b0a" style="Column header" x="237" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[nombre_partida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5176285-0f09-4cf9-80dc-5019c30d3acf" style="Column header" x="316" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[nombre_proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d77b6a51-e772-46cd-9588-9b31235d9af3" style="Column header" x="395" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[nro_factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa363fdc-ebb5-4f53-82d3-aba6f74c8a87" style="Column header" x="474" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[monto_salida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="445e185a-f99a-407a-8b2d-4c1376e6348a" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="080bc697-fb64-46ab-8687-1d62b9e0f89b" style="Detail" x="0" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb48d1fd-71da-4284-a43f-a6558e7eabb3" style="Detail" x="79" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{monto_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="888d0f7e-5507-40b7-a190-b110d1c51121" style="Detail" x="158" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{monto_actual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6fcb0e84-7aa9-464a-b77a-0692d4b50b0d" style="Detail" x="237" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre_partida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="38841ae7-d09d-4f0c-8f21-4f61cbb14e8f" style="Detail" x="316" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c6ca263-9076-4ac8-9943-b7da12572916" style="Detail" x="395" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nro_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9caa5270-f465-4da1-ad65-3ee087cc1f03" style="Detail" x="474" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{monto_salida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="fb5e9863-8e27-4e29-92a7-7f2e5e7f8e01" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5492960b-e5d7-4c63-a2c1-b5934a6c1a53" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="47373c67-cbc8-4181-b275-47122c5b14ce" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="289c1779-b1fa-43c6-8ca1-ab6bdf555af0" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

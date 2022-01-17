@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.PersonaKardexDocumentoMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumento" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_kardex" property="codigoKardex" jdbcType="INTEGER" />
+    <id column="codigo_documento" property="codigoDocumento" jdbcType="INTEGER" />
+    <result column="fecha_registro" property="fechaRegistro" jdbcType="DATE" />
+    <result column="tramito_trab_social" property="tramitoTrabSocial" jdbcType="CHAR" />
+    
+    <result column="codigo_documento" property="documento.codigoDocumento" jdbcType="INTEGER" />
+    <result column="nombre_documento" property="documento.nombreDocumento" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    pkd.codigo_kardex, pkd.codigo_documento, pkd.fecha_registro, pkd.tramito_trab_social, d.nombre_documento
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumentoExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personas_kardex_documentos pkd
+	inner join documentos d
+	on pkd.codigo_documento = d.codigo_documento
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumentoKey" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from personas_kardex_documentos pkd
+	inner join documentos d
+	on pkd.codigo_documento = d.codigo_documento
+    where pkd.codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and pkd.codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumentoKey" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas_kardex_documentos
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumentoExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas_kardex_documentos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumento" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas_kardex_documentos (codigo_kardex, codigo_documento, fecha_registro, 
+      tramito_trab_social)
+    values (#{codigoKardex,jdbcType=INTEGER}, #{codigoDocumento,jdbcType=INTEGER}, DEFAULT, 
+      #{tramitoTrabSocial,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumento" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas_kardex_documentos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoKardex != null" >
+        codigo_kardex,
+      </if>
+      <if test="codigoDocumento != null" >
+        codigo_documento,
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro,
+      </if>
+      <if test="tramitoTrabSocial != null" >
+        tramito_trab_social,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoKardex != null" >
+        #{codigoKardex,jdbcType=INTEGER},
+      </if>
+      <if test="codigoDocumento != null" >
+        #{codigoDocumento,jdbcType=INTEGER},
+      </if>
+      <if test="fechaRegistro != null" >
+        #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="tramitoTrabSocial != null" >
+        #{tramitoTrabSocial,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumentoExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from personas_kardex_documentos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_documentos
+    <set >
+      <if test="record.codigoKardex != null" >
+        codigo_kardex = #{record.codigoKardex,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigoDocumento != null" >
+        codigo_documento = #{record.codigoDocumento,jdbcType=INTEGER},
+      </if>
+      <if test="record.fechaRegistro != null" >
+        fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="record.tramitoTrabSocial != null" >
+        tramito_trab_social = #{record.tramitoTrabSocial,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_documentos
+    set codigo_kardex = #{record.codigoKardex,jdbcType=INTEGER},
+      codigo_documento = #{record.codigoDocumento,jdbcType=INTEGER},
+      fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      tramito_trab_social = #{record.tramitoTrabSocial,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumento" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_documentos
+    <set >
+      <if test="fechaRegistro != null" >
+        fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="tramitoTrabSocial != null" >
+        tramito_trab_social = #{tramitoTrabSocial,jdbcType=CHAR},
+      </if>
+    </set>
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexDocumento" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_documentos
+    set fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      tramito_trab_social = #{tramitoTrabSocial,jdbcType=CHAR}
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and codigo_documento = #{codigoDocumento,jdbcType=INTEGER}
+  </update>
+</mapper>

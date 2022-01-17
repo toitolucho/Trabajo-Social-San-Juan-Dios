@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_ficha_kardex02" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c8b23d57-3f7e-40fe-997e-7ed6075e9587">
+	<property name="ireport.zoom" value="2.3579476910000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="100"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigo_kardex_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Proyectos\\TrabajoSocialSanJuan\\Proyecto\\src\\org\\quarkbit\\trabajosocialsanjuan\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_ficha_kardex($P{codigo_kardex_aux})
+AS
+(	di_persona		CHARACTER (10),
+	nombre_kardex		TEXT,
+	numero_kardex		INTEGER,
+	fecha_registro		DATE,
+	fecha_ingreso		DATE,
+
+	centro			TEXT,
+	nombre_completo		TEXT,
+	nombres			CHARACTER VARYING(80),
+	paterno			CHARACTER VARYING(40),
+	materno			CHARACTER VARYING(40),
+	fecha_nacimiento 	DATE,
+	edad			INTEGER,
+	sexo			TEXT,
+	nombre_pais		CHARACTER VARYING(250),
+	nombre_departamento 	CHARACTER VARYING(250),
+	nombre_provincia	CHARACTER VARYING(250),
+	nombre_lugar		CHARACTER VARYING(250),
+	grado_instruccion	TEXT,
+	domicilio_persona	TEXT,
+	motivo_ingreso		TEXT,
+	nombre_completo_ingreso	TEXT,
+	domicilio_ingreso	TEXT,
+	telefono_ingreso	CHARACTER VARYING(100),
+	celular_ingreso		CHARACTER (10),
+	ruta_archivo_foto	TEXT,
+	fecha_egreso		DATE,
+	nombre_completo_egreso	TEXT,
+	domicilio_egreso	TEXT,
+	motivo_egreso		TEXT,
+	di_persona_egreso	CHARACTER(10),
+	telefono_egreso		CHARACTER VARYING(100),
+	nombre_completo_ts	TEXT
+)]]>
+	</queryString>
+	<field name="di_persona" class="java.lang.String"/>
+	<field name="nombre_kardex" class="java.lang.String"/>
+	<field name="numero_kardex" class="java.lang.Integer"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="centro" class="java.lang.String"/>
+	<field name="nombre_completo" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="paterno" class="java.lang.String"/>
+	<field name="materno" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="nombre_pais" class="java.lang.String"/>
+	<field name="nombre_departamento" class="java.lang.String"/>
+	<field name="nombre_provincia" class="java.lang.String"/>
+	<field name="nombre_lugar" class="java.lang.String"/>
+	<field name="grado_instruccion" class="java.lang.String"/>
+	<field name="domicilio_persona" class="java.lang.String"/>
+	<field name="motivo_ingreso" class="java.lang.String"/>
+	<field name="nombre_completo_ingreso" class="java.lang.String"/>
+	<field name="domicilio_ingreso" class="java.lang.String"/>
+	<field name="telefono_ingreso" class="java.lang.String"/>
+	<field name="celular_ingreso" class="java.lang.String"/>
+	<field name="ruta_archivo_foto" class="java.lang.String"/>
+	<field name="fecha_egreso" class="java.sql.Date"/>
+	<field name="nombre_completo_egreso" class="java.lang.String"/>
+	<field name="domicilio_egreso" class="java.lang.String"/>
+	<field name="motivo_egreso" class="java.lang.String"/>
+	<field name="di_persona_egreso" class="java.lang.String"/>
+	<field name="telefono_egreso" class="java.lang.String"/>
+	<field name="nombre_completo_ts" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b688fe1c-6e27-4f39-b054-c7eb88232f01" style="Title" x="118" y="8" width="293" height="33" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Reporte de Familiares]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="258" splitType="Stretch">
+			<line>
+				<reportElement uuid="0f434e77-5f33-41da-ba55-1fbd8f9bc280" positionType="FixRelativeToBottom" x="0" y="253" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="81c36afa-200b-4f06-a2a1-739a078192f9" style="Detail" x="149" y="25" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_kardex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9fa41a01-4c1e-4e2b-9887-122c25ce72fb" style="Detail" x="149" y="40" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_kardex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c1fc5e0c-ef1b-4a15-81e3-e540c5eafe12" style="Detail" x="149" y="55" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{di_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="771ca655-fd81-4817-bae4-de2b16775a2c" style="Detail" x="149" y="70" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="136478e5-cc2a-450c-be7f-a7189779cd34" style="Detail" x="149" y="85" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8a1b5b35-5f37-4921-883c-d73551fc90c9" style="Detail" x="149" y="100" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{materno}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="9f91b0ad-f590-4830-a2e5-53e199871f5f" style="Detail" x="149" y="115" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="c371d01a-3191-43f5-a198-d595a97dad85" style="Detail" x="149" y="131" width="222" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5b3b84e7-76ec-41b4-847c-20864391256e" style="Column header" x="47" y="25" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Número de Kardex]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b14507ac-5028-43fe-a034-e6ef01fc3497" style="Column header" x="47" y="40" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombre kardex]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="295b65dc-2e7c-4369-b79f-0259b89b44ab" style="Column header" x="47" y="55" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Identificador personal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1551bcb5-a6c1-4393-b97a-f5c2b541d135" style="Column header" x="47" y="70" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="90fcae66-f94f-470b-98d7-f705acb6ec0b" style="Column header" x="47" y="85" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Apellido Paterno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="81e43621-d206-43be-a47c-9ab2ed34149f" style="Column header" x="47" y="100" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Apellido Materno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d0c72d34-551b-4af1-9a8d-3049c8d0da8f" style="Column header" x="47" y="115" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a750424d-4322-453d-98ec-f9ef423a1c3d" style="Column header" x="47" y="131" width="91" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha de ingreso]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b34604cf-30e1-4cbb-8c77-56fd1c033df3" x="40" y="23" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="4d809f66-7e63-49e9-9649-42ae838d5c30" x="40" y="145" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="a8f1991b-3686-45c9-80a1-8509edac4f82" x="40" y="36" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="45a1f8f1-28f7-4267-8842-f73e246ed7c7" x="40" y="51" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="c277e749-a565-4b31-b771-5f65aa713ecc" x="40" y="66" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="a9a28fd1-7882-48b0-a401-9e77cc55384f" x="40" y="81" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="1ab758c4-1b25-48c3-b9c3-2f81cc97e31d" x="40" y="96" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="12bd11ec-ca9a-493e-9f83-e1847de37f61" x="40" y="111" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="6cd06470-3864-4fb9-91a8-2126dcf9cff7" x="40" y="128" width="393" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7305699-f163-4fb0-9a8d-083886047056" x="40" y="23" width="1" height="122"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="cabb0c20-11e3-4122-856e-2f8d87f7042a" x="143" y="23" width="1" height="122"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="d093d0ea-af02-44de-8825-1a7216b8c38a" x="433" y="23" width="1" height="122"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="9cb626d5-b6ba-4d97-a586-81153b7e13a2" style="Column header" x="11" y="6" width="91" height="11" forecolor="#000000"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Datos Kardex]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="94ccfa3b-8f00-4c04-ac14-8c35cb27fb07" style="Column header" x="11" y="149" width="91" height="11" forecolor="#000000"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Familiares]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="b424ccc5-68f8-4ff2-aea0-e9670c8722fb" x="3" y="160" width="566" height="93"/>
+				<subreportParameter name="codigo_kardex_aux">
+					<subreportParameterExpression><![CDATA[$P{codigo_kardex_aux}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + 'listar_grupo_familiar_kardex.jasper']]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3ef67874-86f4-484c-b703-bbd7cf0dd21f" style="Column header" x="433" y="0" width="80" height="9"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="b4bd6516-23de-4a1a-9faa-d21e1e7df6b9" style="Column header" x="513" y="0" width="40" height="9"/>
+				<textElement>
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="c7770f6c-ac99-4734-aa68-2c755b146610" style="Column header" x="0" y="0" width="197" height="9"/>
+				<textElement>
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

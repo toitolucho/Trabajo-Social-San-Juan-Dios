@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listar_informe_psicologico_reporte" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9bfb7437-0b61-4295-a575-23a674b43764">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="352"/>
+	<parameter name="codigo_informe_psico_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM listar_informe_psicologico_reporte($P{codigo_informe_psico_aux})
+AS
+(
+	codigo_informe_psico	INTEGER,
+	codigo_kardex		INTEGER,
+	motivo_consulta		TEXT,
+	fecha_evaluacion	DATE,
+	codigo_persona_evalua	INTEGER,
+	instrumentos		TEXT,
+	antecedentes		TEXT,
+	aspectos_relevantes	TEXT,
+	conductas_observadas	TEXT,
+	res_motricidad_gruesa	TEXT,
+	res_motricidad_fino	TEXT,
+	res_audicion_lenguaje	TEXT,
+	res_personal_social	TEXT,
+	res_total		TEXT,
+	diagnostico		TEXT,
+	recomendaciones		TEXT,
+	numero_kardex		INTEGER,
+	fecha_ingreso		DATE,
+	motivo_ingreso		TEXT,
+	di_persona_nino		CHARACTER(10),
+	paterno_nino		CHARACTER VARYING(40),
+	materno_nino		CHARACTER VARYING(40),
+	nombres_nino		CHARACTER VARYING(80),
+	nombre_completo_nino	TEXT,
+	sexo			TEXT,
+	fecha_nacimiento	DATE,
+	edad			INTEGER,
+	codigo_pais		CHARACTER(2),
+	nombre_departamento	CHARACTER VARYING(250),
+	nombre_pais		CHARACTER VARYING(250),
+	materno_evaluador	CHARACTER VARYING(40),
+	nombres_evaluador	CHARACTER VARYING(80),
+	paterno_evaluador	CHARACTER VARYING(40),
+	nombre_completo_evaluador TEXT,
+	di_persona_evaluador	CHARACTER(10),
+	hogar		TEXT
+)]]>
+	</queryString>
+	<field name="codigo_informe_psico" class="java.lang.Integer"/>
+	<field name="codigo_kardex" class="java.lang.Integer"/>
+	<field name="motivo_consulta" class="java.lang.String"/>
+	<field name="fecha_evaluacion" class="java.sql.Date"/>
+	<field name="codigo_persona_evalua" class="java.lang.Integer"/>
+	<field name="instrumentos" class="java.lang.String"/>
+	<field name="antecedentes" class="java.lang.String"/>
+	<field name="aspectos_relevantes" class="java.lang.String"/>
+	<field name="conductas_observadas" class="java.lang.String"/>
+	<field name="res_motricidad_gruesa" class="java.lang.String"/>
+	<field name="res_motricidad_fino" class="java.lang.String"/>
+	<field name="res_audicion_lenguaje" class="java.lang.String"/>
+	<field name="res_personal_social" class="java.lang.String"/>
+	<field name="res_total" class="java.lang.String"/>
+	<field name="diagnostico" class="java.lang.String"/>
+	<field name="recomendaciones" class="java.lang.String"/>
+	<field name="numero_kardex" class="java.lang.Integer"/>
+	<field name="fecha_ingreso" class="java.sql.Date"/>
+	<field name="motivo_ingreso" class="java.lang.String"/>
+	<field name="di_persona_nino" class="java.lang.String"/>
+	<field name="paterno_nino" class="java.lang.String"/>
+	<field name="materno_nino" class="java.lang.String"/>
+	<field name="nombres_nino" class="java.lang.String"/>
+	<field name="nombre_completo_nino" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="codigo_pais" class="java.lang.String"/>
+	<field name="nombre_departamento" class="java.lang.String"/>
+	<field name="nombre_pais" class="java.lang.String"/>
+	<field name="materno_evaluador" class="java.lang.String"/>
+	<field name="nombres_evaluador" class="java.lang.String"/>
+	<field name="paterno_evaluador" class="java.lang.String"/>
+	<field name="nombre_completo_evaluador" class="java.lang.String"/>
+	<field name="di_persona_evaluador" class="java.lang.String"/>
+	<field name="hogar" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="95756280-9b76-4c10-84f8-2ebdf87e6b83" x="172" y="3" width="235" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME PSICOLÓGICO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b53d4796-aff7-4d2f-8661-ae70e353ab87" x="0" y="30" width="571" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" x="21" y="34" width="135" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. DATOS PERSONALES]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="90c1f3f4-47c3-465b-bba5-30f77a92e6d8" x="116" y="56" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_nino}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="15" y="56" width="95" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOMBRES Y APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="15" y="76" width="95" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LUGAR DE NACIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="15" y="96" width="95" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE NACIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="15" y="116" width="95" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="310" y="56" width="98" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HOGAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="310" y="76" width="98" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EDAD ACTUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="310" y="96" width="98" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EVALUACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="775fa95b-24b6-48b7-89f2-31cea2a5e82a" x="310" y="116" width="98" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EVALUADORA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1d4986d4-b001-4a40-91da-0968cf029508" x="116" y="76" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_pais} + ' - ' + $F{nombre_departamento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="057e9d28-f634-4642-ba47-c907610999a0" x="116" y="96" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1063a137-f721-4405-9d7b-67698ee0ba7d" x="415" y="76" width="138" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="f1a2c4e2-db2a-4c18-8317-a0055441f66b" x="415" y="96" width="138" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_evaluacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48dc373e-7641-4b07-8dca-7ef3afe88785" x="415" y="116" width="138" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo_evaluador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7543c6e7-cf6e-4a89-86fd-27b3ac1350f0" x="415" y="56" width="138" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hogar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0c1f84bd-b5d3-454f-a55f-c7cc65d9b063" x="116" y="116" width="190" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LACTARIOS]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="50" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="139" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="50" width="1" height="89"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="562" y="50" width="1" height="89"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="112" y="50" width="1" height="89"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="308" y="50" width="1" height="89"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="412" y="50" width="1" height="89"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="70" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="90" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8990c9f7-3e5f-4213-bae5-d515f5f9307c" x="10" y="112" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="447" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="3" width="135" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. MOTIVO DE CONSULTA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d195966e-db3b-40bf-bc4a-7cb42d149360" positionType="Float" isPrintRepeatedValues="false" x="29" y="17" width="520" height="48" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo_consulta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="70" width="260" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. INSTRUMENTOS Y FUENTES DE INFORMACIÓN UTILIZADOS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bfbddc69-91b9-4074-89c3-6989981bf6e0" positionType="Float" isPrintRepeatedValues="false" x="29" y="84" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{instrumentos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="104" width="260" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[4. ANTECEDENTES GENERALES]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6ea6290e-c43d-426e-b365-c0b7c2b330d0" positionType="Float" isPrintRepeatedValues="false" x="29" y="118" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{antecedentes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="141" width="260" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[5. ASPECTOS RELEVANTES DEL CASO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ff4416f8-4839-48da-a25a-8377391c80db" positionType="Float" isPrintRepeatedValues="false" x="29" y="155" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspectos_relevantes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="179" width="387" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[6. CONDUCTAS OBSERVADAS DURANTE LA APLICACIÓN DE LA PRUEBA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f0312d5a-7a9e-4268-b97a-d983fdc8f5c2" positionType="Float" isPrintRepeatedValues="false" x="29" y="193" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conductas_observadas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="219" width="389" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[7. RESULTADOS DE LA ESCALA ABREVIADA DEL DESARROLLO PSICOSOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="233" width="305" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.1. Área Motricidad Gruesa]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d147329a-b7ad-4606-a0e6-33554cb84a8c" positionType="Float" isPrintRepeatedValues="false" x="29" y="245" width="520" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{res_motricidad_gruesa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="257" width="305" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.2. Área Motriz Fino-Adaptativa]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b4443d1d-0a48-49e3-84fc-79f36deb34da" positionType="Float" isPrintRepeatedValues="false" x="29" y="269" width="520" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{res_motricidad_fino}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="281" width="305" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.3. Área Audición Lenguaje]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca927019-99f1-4066-8334-273ddfe6f489" positionType="Float" isPrintRepeatedValues="false" x="29" y="293" width="520" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{res_audicion_lenguaje}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="305" width="305" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.4. Área Personal Social]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca927019-99f1-4066-8334-273ddfe6f489" positionType="Float" isPrintRepeatedValues="false" x="29" y="317" width="520" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{res_personal_social}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca927019-99f1-4066-8334-273ddfe6f489" positionType="Float" isPrintRepeatedValues="false" x="29" y="341" width="520" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{res_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="329" width="305" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.5. Área Personal Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="361" width="389" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[8. APROXIMACIÓN DIAGNÓSTICA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b9667f62-3776-4dc5-8591-59d8edf8d1f1" positionType="Float" isPrintRepeatedValues="false" x="29" y="375" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15402e5d-e6d9-4e05-945b-a5dd33d0dc5b" positionType="Float" x="21" y="403" width="389" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[9. RECOMENDACIONES y/o SUGERENCIAS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b9667f62-3776-4dc5-8591-59d8edf8d1f1" positionType="Float" isPrintRepeatedValues="false" x="29" y="417" width="520" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recomendaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

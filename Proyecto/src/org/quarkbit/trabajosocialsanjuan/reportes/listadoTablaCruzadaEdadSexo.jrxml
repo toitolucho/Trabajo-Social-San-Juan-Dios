@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoTablaCruzadaEdadSexo" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40de69ef-aabe-4e5e-a7e5-a7bbc0222710">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="101"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<queryString>
+		<![CDATA[SELECT TA1.edad, CASE WHEN TA1.sexo = 'F' THEN 'FEMENINO' ELSE 'MASCULINO' END AS Sexo, count(TA3.sexo) cantidad
+FROM
+(
+	SELECT ta1.edad, ta2.sexo
+	FROM
+	(
+		SELECT 1 AS edad
+		UNION ALL
+		SELECT 2
+		UNION ALL
+		SELECT 3
+		UNION ALL
+		SELECT 4
+		UNION ALL
+		SELECT 5
+		UNION ALL
+		SELECT 6
+	) AS TA1,
+	(
+		SELECT 'M' AS sexo
+		UNION ALL
+		SELECT 'F'
+	) AS TA2
+) TA1
+LEFT JOIN
+(
+	SELECT
+	  personas_datos_nacimiento.edad,
+	  personas.sexo
+	FROM
+	  public.personas_kardex,
+	  public.personas,
+	  public.personas_datos_nacimiento
+	WHERE
+	  personas.codigo_persona = personas_kardex.codigo_persona AND
+	  personas_datos_nacimiento.codigo_persona = personas.codigo_persona
+	  AND personas_datos_nacimiento.edad <= 6
+) as TA3
+ON TA1.sexo = TA3.sexo
+AND TA3.edad = TA1.EDAD
+group by TA1.edad, TA1.sexo
+order by TA1.edad, TA1.sexo]]>
+	</queryString>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e1184c29-77d3-4300-a8cd-9cf42e8c3a82" x="150" y="11" width="277" height="24"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad  de niños en el hogar por Sexo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="571" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="c30acaf0-4d92-4464-bc47-34eba0018005" x="40" y="24" width="496" height="82"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement uuid="643ffa26-969d-4d6f-b5d5-8dfdd3601700" style="Crosstab Data Text" x="0" y="0" width="70" height="21"/>
+							<textElement/>
+							<text><![CDATA[Edad]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="edad" width="70" totalPosition="End">
+					<bucket class="java.lang.Integer">
+						<bucketExpression><![CDATA[$F{edad}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="d463066b-05d8-46bd-9f74-4763dfc012fd" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{edad}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="fa4b6323-c953-4662-9a19-5fd213a7e8f1" x="0" y="0" width="70" height="25"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total edad]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="sexo" height="21" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{sexo}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="e6db8862-c759-4ac7-90ae-a169cbf8a445" style="Crosstab Data Text" x="0" y="0" width="70" height="21"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{sexo}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="bb8d8aec-31fe-4ee4-bc07-87e8ab19e22d" x="0" y="0" width="50" height="21"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total sexo]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="cantidadMeasure" class="java.lang.Long">
+					<measureExpression><![CDATA[$F{cantidad}]]></measureExpression>
+				</measure>
+				<measure name="CantidadTotalMeasure" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$F{cantidad}]]></measureExpression>
+				</measure>
+				<crosstabCell width="70" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="c27c3fd2-d6f1-4f2f-9130-c66f45fad53d" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{cantidadMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="70" height="25" rowTotalGroup="edad">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="###0">
+							<reportElement uuid="6e3a1b15-444b-4274-bb36-ba89864be978" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CantidadTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="sexo">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="###0">
+							<reportElement uuid="c0e5b7e9-758d-4f4c-a36b-a161f80a1fa5" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CantidadTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="edad" columnTotalGroup="sexo">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="###0">
+							<reportElement uuid="cef8dd21-e83c-42d2-9b0a-2785b5079b97" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CantidadTotalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+			<bar3DChart>
+				<chart>
+					<reportElement uuid="35b02a99-ae9d-4c8a-b430-abeaaf2b3fe6" x="82" y="241" width="383" height="161"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{edad}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{sexo}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cantidad}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+			<pie3DChart>
+				<chart>
+					<reportElement uuid="118b2a35-fa93-463c-8e32-c781f4bd7051" x="82" y="411" width="383" height="151"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{sexo}]]></keyExpression>
+					<valueExpression><![CDATA[$F{edad}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>

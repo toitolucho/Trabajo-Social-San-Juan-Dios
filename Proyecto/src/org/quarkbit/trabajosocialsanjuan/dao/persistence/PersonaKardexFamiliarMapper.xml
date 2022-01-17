@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.PersonaKardexFamiliarMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliar" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_kardex" property="codigoKardex" jdbcType="INTEGER" />
+    <id column="codigo_persona" property="codigoPersona" jdbcType="INTEGER" />
+    <result column="codigo_parentesco" property="codigoParentesco" jdbcType="INTEGER" />
+    <result column="monto_ingreso" property="montoIngreso" jdbcType="DOUBLE" />
+    <result column="fecha_registro" property="fechaRegistro" jdbcType="DATE" />
+    <result column="observaciones" property="observaciones" jdbcType="VARCHAR" />
+    
+    <result column="nombres" property="persona.nombres" jdbcType="VARCHAR" />
+    <result column="paterno" property="persona.paterno" jdbcType="VARCHAR" />
+    <result column="materno" property="persona.materno" jdbcType="VARCHAR" />
+    <result column="di_persona" property="persona.diPersona" jdbcType="VARCHAR" />
+    <result column="codigo_tipo_persona" property="persona.codigoTipoPersona" jdbcType="VARCHAR" />
+    <result column="codigo_persona" property="persona.codigoPersona" jdbcType="INTEGER" />
+    
+    <result column="codigo_parentesco" property="parentesco.codigoParentesco" jdbcType="INTEGER" />
+    <result column="nombre_parentesco" property="parentesco.nombreParentesco" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+   	pkf.codigo_kardex, pkf.codigo_persona, pkf.codigo_parentesco, pkf.monto_ingreso, 
+    pkf.fecha_registro, pkf.observaciones, p.nombres, p.paterno, p.materno, pr.nombre_parentesco, p.di_persona, p.codigo_tipo_persona  
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliarExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+      FROM personas_kardex_familiares pkf
+	  INNER JOIN personas p
+	  on pkf.codigo_persona = p.codigo_persona
+	  inner join parentescos pr
+	  on pr.codigo_parentesco = pkf.codigo_parentesco
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliarKey" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    FROM personas_kardex_familiares pkf
+	INNER JOIN personas p
+	on pkf.codigo_persona = p.codigo_persona
+	inner join parentescos pr
+	on pr.codigo_parentesco = pkf.codigo_parentesco
+    where pkf.codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+    and pkf.codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliarKey" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas_kardex_familiares
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+    and codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliarExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas_kardex_familiares
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliar" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas_kardex_familiares (codigo_kardex, codigo_persona, codigo_parentesco, 
+      monto_ingreso, fecha_registro, observaciones
+      )
+    values (#{codigoKardex,jdbcType=INTEGER}, #{codigoPersona,jdbcType=INTEGER}, #{codigoParentesco,jdbcType=INTEGER}, 
+      #{montoIngreso,jdbcType=DOUBLE}, DEFAULT, #{observaciones,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliar" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas_kardex_familiares
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoKardex != null" >
+        codigo_kardex,
+      </if>
+      <if test="codigoPersona != null" >
+        codigo_persona,
+      </if>
+      <if test="codigoParentesco != null" >
+        codigo_parentesco,
+      </if>
+      <if test="montoIngreso != null" >
+        monto_ingreso,
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro,
+      </if>
+      <if test="observaciones != null" >
+        observaciones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoKardex != null" >
+        #{codigoKardex,jdbcType=INTEGER},
+      </if>
+      <if test="codigoPersona != null" >
+        #{codigoPersona,jdbcType=INTEGER},
+      </if>
+      <if test="codigoParentesco != null" >
+        #{codigoParentesco,jdbcType=INTEGER},
+      </if>
+      <if test="montoIngreso != null" >
+        #{montoIngreso,jdbcType=DOUBLE},
+      </if>
+      <if test="fechaRegistro != null" >
+        #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="observaciones != null" >
+        #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliarExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from personas_kardex_familiares
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_familiares
+    <set >
+      <if test="record.codigoKardex != null" >
+        codigo_kardex = #{record.codigoKardex,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigoPersona != null" >
+        codigo_persona = #{record.codigoPersona,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigoParentesco != null" >
+        codigo_parentesco = #{record.codigoParentesco,jdbcType=INTEGER},
+      </if>
+      <if test="record.montoIngreso != null" >
+        monto_ingreso = #{record.montoIngreso,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fechaRegistro != null" >
+        fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="record.observaciones != null" >
+        observaciones = #{record.observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_familiares
+    set codigo_kardex = #{record.codigoKardex,jdbcType=INTEGER},
+      codigo_persona = #{record.codigoPersona,jdbcType=INTEGER},
+      codigo_parentesco = #{record.codigoParentesco,jdbcType=INTEGER},
+      monto_ingreso = #{record.montoIngreso,jdbcType=DOUBLE},
+      fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      observaciones = #{record.observaciones,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliar" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_familiares
+    <set >
+      <if test="codigoParentesco != null" >
+        codigo_parentesco = #{codigoParentesco,jdbcType=INTEGER},
+      </if>
+      <if test="montoIngreso != null" >
+        monto_ingreso = #{montoIngreso,jdbcType=DOUBLE},
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="observaciones != null" >
+        observaciones = #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaKardexFamiliar" >
+    <!--
+      
+      
+      
+    -->
+    update personas_kardex_familiares
+    set codigo_parentesco = #{codigoParentesco,jdbcType=INTEGER},
+      monto_ingreso = #{montoIngreso,jdbcType=DOUBLE},
+      fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      observaciones = #{observaciones,jdbcType=VARCHAR}
+    where codigo_kardex = #{codigoKardex,jdbcType=INTEGER}
+      and codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </update>
+</mapper>

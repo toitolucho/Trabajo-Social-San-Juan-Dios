@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.PersonaMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Persona" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_persona" property="codigoPersona" jdbcType="INTEGER" />
+    <result column="di_persona" property="diPersona" jdbcType="CHAR" />
+    <result column="paterno" property="paterno" jdbcType="VARCHAR" />
+    <result column="materno" property="materno" jdbcType="VARCHAR" />
+    <result column="nombres" property="nombres" jdbcType="VARCHAR" />
+    <result column="codigo_tipo_persona" property="codigoTipoPersona" jdbcType="CHAR" />
+    <result column="codigo_empleo" property="codigoEmpleo" jdbcType="INTEGER" />
+    <result column="grado_instruccion" property="gradoInstruccion" jdbcType="CHAR" />
+    <result column="sexo" property="sexo" jdbcType="CHAR" />
+    <result column="estado_civil" property="estadoCivil" jdbcType="CHAR" />
+    <result column="celular" property="celular" jdbcType="CHAR" />
+    <result column="telefono" property="telefono" jdbcType="VARCHAR" />
+    <result column="domicilio" property="domicilio" jdbcType="VARCHAR" />
+    <result column="observaciones" property="observaciones" jdbcType="VARCHAR" />
+    
+    <result column="codigo_empleo" property="empleo.codigoEmpleo" jdbcType="INTEGER" />
+    <result column="nombre_empleo" property="empleo.nombreEmpleo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    p.codigo_persona, p.di_persona, p.paterno, p.materno, p.nombres, p.codigo_tipo_persona, p.codigo_empleo, 
+    p.grado_instruccion, p.sexo, p.estado_civil, p.celular, p.telefono, p.domicilio, p.observaciones,
+    e.nombre_empleo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personas  p
+	left join empleos e
+	on p.codigo_empleo = e.codigo_empleo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from personas  p
+	left join empleos e
+	on p.codigo_empleo = e.codigo_empleo
+    where codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas
+    where codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from personas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Persona" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas (codigo_persona, di_persona, paterno, 
+      materno, nombres, codigo_tipo_persona, 
+      codigo_empleo, grado_instruccion, sexo, 
+      estado_civil, celular, telefono, 
+      domicilio, observaciones)
+    values (DEFAULT, #{diPersona,jdbcType=CHAR}, #{paterno,jdbcType=VARCHAR}, 
+      #{materno,jdbcType=VARCHAR}, #{nombres,jdbcType=VARCHAR}, #{codigoTipoPersona,jdbcType=CHAR}, 
+      #{codigoEmpleo,jdbcType=INTEGER}, #{gradoInstruccion,jdbcType=CHAR}, #{sexo,jdbcType=CHAR}, 
+      #{estadoCivil,jdbcType=CHAR}, #{celular,jdbcType=CHAR}, #{telefono,jdbcType=VARCHAR}, 
+      #{domicilio,jdbcType=VARCHAR}, #{observaciones,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Persona" >
+    <!--
+      
+      
+      
+    -->
+    insert into personas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoPersona != null" >
+        codigo_persona,
+      </if>
+      <if test="diPersona != null" >
+        di_persona,
+      </if>
+      <if test="paterno != null" >
+        paterno,
+      </if>
+      <if test="materno != null" >
+        materno,
+      </if>
+      <if test="nombres != null" >
+        nombres,
+      </if>
+      <if test="codigoTipoPersona != null" >
+        codigo_tipo_persona,
+      </if>
+      <if test="codigoEmpleo != null" >
+        codigo_empleo,
+      </if>
+      <if test="gradoInstruccion != null" >
+        grado_instruccion,
+      </if>
+      <if test="sexo != null" >
+        sexo,
+      </if>
+      <if test="estadoCivil != null" >
+        estado_civil,
+      </if>
+      <if test="celular != null" >
+        celular,
+      </if>
+      <if test="telefono != null" >
+        telefono,
+      </if>
+      <if test="domicilio != null" >
+        domicilio,
+      </if>
+      <if test="observaciones != null" >
+        observaciones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoPersona != null" >
+        #{codigoPersona,jdbcType=INTEGER},
+      </if>
+      <if test="diPersona != null" >
+        #{diPersona,jdbcType=CHAR},
+      </if>
+      <if test="paterno != null" >
+        #{paterno,jdbcType=VARCHAR},
+      </if>
+      <if test="materno != null" >
+        #{materno,jdbcType=VARCHAR},
+      </if>
+      <if test="nombres != null" >
+        #{nombres,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoTipoPersona != null" >
+        #{codigoTipoPersona,jdbcType=CHAR},
+      </if>
+      <if test="codigoEmpleo != null" >
+        #{codigoEmpleo,jdbcType=INTEGER},
+      </if>
+      <if test="gradoInstruccion != null" >
+        #{gradoInstruccion,jdbcType=CHAR},
+      </if>
+      <if test="sexo != null" >
+        #{sexo,jdbcType=CHAR},
+      </if>
+      <if test="estadoCivil != null" >
+        #{estadoCivil,jdbcType=CHAR},
+      </if>
+      <if test="celular != null" >
+        #{celular,jdbcType=CHAR},
+      </if>
+      <if test="telefono != null" >
+        #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="domicilio != null" >
+        #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="observaciones != null" >
+        #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.PersonaExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from personas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas
+    <set >
+      <if test="record.codigoPersona != null" >
+        codigo_persona = #{record.codigoPersona,jdbcType=INTEGER},
+      </if>
+      <if test="record.diPersona != null" >
+        di_persona = #{record.diPersona,jdbcType=CHAR},
+      </if>
+      <if test="record.paterno != null" >
+        paterno = #{record.paterno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materno != null" >
+        materno = #{record.materno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nombres != null" >
+        nombres = #{record.nombres,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codigoTipoPersona != null" >
+        codigo_tipo_persona = #{record.codigoTipoPersona,jdbcType=CHAR},
+      </if>
+      <if test="record.codigoEmpleo != null" >
+        codigo_empleo = #{record.codigoEmpleo,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradoInstruccion != null" >
+        grado_instruccion = #{record.gradoInstruccion,jdbcType=CHAR},
+      </if>
+      <if test="record.sexo != null" >
+        sexo = #{record.sexo,jdbcType=CHAR},
+      </if>
+      <if test="record.estadoCivil != null" >
+        estado_civil = #{record.estadoCivil,jdbcType=CHAR},
+      </if>
+      <if test="record.celular != null" >
+        celular = #{record.celular,jdbcType=CHAR},
+      </if>
+      <if test="record.telefono != null" >
+        telefono = #{record.telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicilio != null" >
+        domicilio = #{record.domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.observaciones != null" >
+        observaciones = #{record.observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update personas
+    set codigo_persona = #{record.codigoPersona,jdbcType=INTEGER},
+      di_persona = #{record.diPersona,jdbcType=CHAR},
+      paterno = #{record.paterno,jdbcType=VARCHAR},
+      materno = #{record.materno,jdbcType=VARCHAR},
+      nombres = #{record.nombres,jdbcType=VARCHAR},
+      codigo_tipo_persona = #{record.codigoTipoPersona,jdbcType=CHAR},
+      codigo_empleo = #{record.codigoEmpleo,jdbcType=INTEGER},
+      grado_instruccion = #{record.gradoInstruccion,jdbcType=CHAR},
+      sexo = #{record.sexo,jdbcType=CHAR},
+      estado_civil = #{record.estadoCivil,jdbcType=CHAR},
+      celular = #{record.celular,jdbcType=CHAR},
+      telefono = #{record.telefono,jdbcType=VARCHAR},
+      domicilio = #{record.domicilio,jdbcType=VARCHAR},
+      observaciones = #{record.observaciones,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Persona" >
+    <!--
+      
+      
+      
+    -->
+    update personas
+    <set >
+      <if test="diPersona != null" >
+        di_persona = #{diPersona,jdbcType=CHAR},
+      </if>
+      <if test="paterno != null" >
+        paterno = #{paterno,jdbcType=VARCHAR},
+      </if>
+      <if test="materno != null" >
+        materno = #{materno,jdbcType=VARCHAR},
+      </if>
+      <if test="nombres != null" >
+        nombres = #{nombres,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoTipoPersona != null" >
+        codigo_tipo_persona = #{codigoTipoPersona,jdbcType=CHAR},
+      </if>
+      <if test="codigoEmpleo != null" >
+        codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER},
+      </if>
+      <if test="gradoInstruccion != null" >
+        grado_instruccion = #{gradoInstruccion,jdbcType=CHAR},
+      </if>
+      <if test="sexo != null" >
+        sexo = #{sexo,jdbcType=CHAR},
+      </if>
+      <if test="estadoCivil != null" >
+        estado_civil = #{estadoCivil,jdbcType=CHAR},
+      </if>
+      <if test="celular != null" >
+        celular = #{celular,jdbcType=CHAR},
+      </if>
+      <if test="telefono != null" >
+        telefono = #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="domicilio != null" >
+        domicilio = #{domicilio,jdbcType=VARCHAR},
+      </if>
+      <if test="observaciones != null" >
+        observaciones = #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Persona" >
+    <!--
+      
+      
+      
+    -->
+    update personas
+    set di_persona = #{diPersona,jdbcType=CHAR},
+      paterno = #{paterno,jdbcType=VARCHAR},
+      materno = #{materno,jdbcType=VARCHAR},
+      nombres = #{nombres,jdbcType=VARCHAR},
+      codigo_tipo_persona = #{codigoTipoPersona,jdbcType=CHAR},
+      codigo_empleo = #{codigoEmpleo,jdbcType=INTEGER},
+      grado_instruccion = #{gradoInstruccion,jdbcType=CHAR},
+      sexo = #{sexo,jdbcType=CHAR},
+      estado_civil = #{estadoCivil,jdbcType=CHAR},
+      celular = #{celular,jdbcType=CHAR},
+      telefono = #{telefono,jdbcType=VARCHAR},
+      domicilio = #{domicilio,jdbcType=VARCHAR},
+      observaciones = #{observaciones,jdbcType=VARCHAR}
+    where codigo_persona = #{codigoPersona,jdbcType=INTEGER}
+  </update>
+  
+  <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('personas')}   
+	</update>
+</mapper>

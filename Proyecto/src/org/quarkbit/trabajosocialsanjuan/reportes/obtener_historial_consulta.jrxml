@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_historial_consulta" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e32d92da-c075-4bb6-841a-e0d72f48e3d9">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numero_hc_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_historial_consulta($P{numero_hc_aux}, null, null, null)
+AS
+(
+  numero_hc		INTEGER,
+  numero_consulta	INTEGER,
+  motivo		CHARACTER VARYING(100),
+  fecha_consulta	DATE,
+  tipo_consulta		TEXT,
+  diagnostico		TEXT,
+  observaciones		TEXT,
+  paterno		CHARACTER VARYING(40),
+  materno		CHARACTER VARYING(40),
+  nombres		CHARACTER VARYING(80),
+  nombre_completo	TEXT,
+  sexo			TEXT,
+  fecha_nacimiento	DATE,
+  edad			INT,
+  grupo_sanguinio	CHARACTER VARYING(10),
+  fecha_registro	DATE
+)]]>
+	</queryString>
+	<field name="numero_hc" class="java.lang.Integer"/>
+	<field name="numero_consulta" class="java.lang.Integer"/>
+	<field name="fecha_consulta" class="java.sql.Date"/>
+	<field name="motivo" class="java.lang.String"/>
+	<field name="diagnostico" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="nombre_completo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="grupo_sanguinio" class="java.lang.String"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<group name="nombre_completo">
+		<groupExpression><![CDATA[$F{nombre_completo}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<line>
+					<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="0" width="552" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="96cdfb60-0e94-433b-a1d2-1f108130d1d6" x="3" y="14" width="60" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nº Consulta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="96540cac-62f9-492a-82de-a971b0f1349a" x="65" y="14" width="71" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f0dfb30d-b6cf-4394-9f0f-f403034b92c9" x="140" y="14" width="130" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Motivo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3b610d3a-8ec7-4094-89af-913b8154909e" x="271" y="14" width="135" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Diagnostico]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ce07e145-a5d8-4be3-9f61-10c9629fee0f" x="406" y="14" width="145" height="12"/>
+					<textElement textAlignment="Center">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Observaciones]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="e580817c-4c02-42ec-bd1c-c96f9cca9ec6" mode="Opaque" x="1" y="1" width="550" height="13" forecolor="#FFFFFF" backcolor="#666666"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre_completo}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="14" width="552" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="26" width="552" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="0" width="1" height="26"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="551" y="0" width="1" height="26"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d29922f1-8afd-4c6e-b8f6-13824ac109da" x="181" y="7" width="186" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTORIAL DE CONSULTAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3f92293a-c62b-4866-a95e-763654a78338" x="3" y="0" width="60" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_consulta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="0d9499f2-f0ea-40d0-9b4d-1be242bf220e" x="65" y="0" width="71" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc70f434-6e86-43fe-bbb8-3c4499b06a7e" x="140" y="0" width="130" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2c97f3cb-62b9-4cc5-be82-4ceaf13274dd" x="271" y="0" width="135" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e13d005c-268c-432e-ba97-7fcf2e7a319a" x="406" y="0" width="145" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="13" width="552" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="0" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="274ba8bc-4659-46e3-ae0f-15d7a814f122" x="551" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>

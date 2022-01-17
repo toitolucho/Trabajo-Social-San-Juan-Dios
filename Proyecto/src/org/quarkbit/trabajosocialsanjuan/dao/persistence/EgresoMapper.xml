@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.EgresoMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.Egreso" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_egreso" property="codigoEgreso" jdbcType="INTEGER" />
+    <result column="fecha_egreso" property="fechaEgreso" jdbcType="DATE" />
+    <result column="codigo_usuario" property="codigoUsuario" jdbcType="INTEGER" />
+    <result column="codigo_partida" property="codigoPartida" jdbcType="CHAR" />
+    <result column="codigo_ingreso" property="codigoIngreso" jdbcType="INTEGER" />
+    <result column="fecha_registro" property="fechaRegistro" jdbcType="DATE" />
+    <result column="nro_factura" property="nroFactura" jdbcType="INTEGER" />
+    <result column="codigo_proveedor" property="codigo_proveedor" jdbcType="INTEGER" />
+    <result column="monto_salida" property="montoSalida" jdbcType="DOUBLE" />
+    <result column="observaciones" property="observaciones" jdbcType="VARCHAR" />
+    
+    <result column="codigo_proveedor" property="proveedor.codigoProveedor" jdbcType="INTEGER" />
+    <result column="nombre_proveedor" property="proveedor.nombreProveedor" jdbcType="VARCHAR" />
+    
+    <result column="codigo_partida" property="partida.codigoPartida" jdbcType="CHAR" />
+    <result column="nombre_partida" property="partida.nombrePartida" jdbcType="VARCHAR" />
+    
+    <result column="codigo_ingreso" property="ingreso.codigoIngreso" jdbcType="INTEGER" />
+    <result column="monto_ingreso" property="ingreso.montoIngreso" jdbcType="DOUBLE" />
+    <result column="nombre_ingreso" property="ingreso.nombreIngreso" jdbcType="VARCHAR" />
+    <result column="fecha_ingreso" property="ingreso.fechaIngreso" jdbcType="DATE" />
+    
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    e.codigo_egreso, e.fecha_egreso, e.codigo_usuario, e.codigo_partida, 
+       e.codigo_ingreso, e.fecha_registro, e.nro_factura, e.codigo_proveedor, 
+       e.monto_salida, e.observaciones, p.nombre_partida, i.monto_ingreso, i.fecha_ingreso, pro.nombre_proveedor, i.nombre_ingreso
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EgresoExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    FROM egresos e
+	inner join partidas p
+	on e.codigo_partida = p.codigo_partida
+	inner join ingresos i
+	on e.codigo_ingreso = i.codigo_ingreso
+	inner join proveedores pro
+	on pro.codigo_proveedor = e.codigo_proveedor
+
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    FROM egresos e
+	inner join partidas p
+	on e.codigo_partida = p.codigo_partida
+	inner join ingresos i
+	on e.codigo_ingreso = i.codigo_ingreso
+	inner join proveedores pro
+	on pro.codigo_proveedor = e.codigo_proveedor
+
+    where e.codigo_egreso = #{codigoEgreso,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from egresos
+    where codigo_egreso = #{codigoEgreso,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EgresoExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from egresos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Egreso" >
+    <!--
+      
+      
+      
+    -->
+    insert into egresos (codigo_egreso, fecha_egreso, codigo_usuario, 
+      codigo_partida, codigo_ingreso, fecha_registro, 
+      nro_factura, codigo_proveedor, monto_salida, 
+      observaciones)
+    values (DEFAULT, #{fechaEgreso,jdbcType=DATE}, #{codigoUsuario,jdbcType=INTEGER}, 
+      #{codigoPartida,jdbcType=CHAR}, #{codigoIngreso,jdbcType=INTEGER}, DEFAULT, 
+      #{nroFactura,jdbcType=INTEGER}, #{codigo_proveedor,jdbcType=INTEGER}, #{montoSalida,jdbcType=DOUBLE}, 
+      #{observaciones,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Egreso" >
+    <!--
+      
+      
+      
+    -->
+    insert into egresos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoEgreso != null" >
+        codigo_egreso,
+      </if>
+      <if test="fechaEgreso != null" >
+        fecha_egreso,
+      </if>
+      <if test="codigoUsuario != null" >
+        codigo_usuario,
+      </if>
+      <if test="codigoPartida != null" >
+        codigo_partida,
+      </if>
+      <if test="codigoIngreso != null" >
+        codigo_ingreso,
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro,
+      </if>
+      <if test="nroFactura != null" >
+        nro_factura,
+      </if>
+      <if test="codigo_proveedor != null" >
+        codigo_proveedor,
+      </if>
+      <if test="montoSalida != null" >
+        monto_salida,
+      </if>
+      <if test="observaciones != null" >
+        observaciones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoEgreso != null" >
+        #{codigoEgreso,jdbcType=INTEGER},
+      </if>
+      <if test="fechaEgreso != null" >
+        #{fechaEgreso,jdbcType=DATE},
+      </if>
+      <if test="codigoUsuario != null" >
+        #{codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="codigoPartida != null" >
+        #{codigoPartida,jdbcType=CHAR},
+      </if>
+      <if test="codigoIngreso != null" >
+        #{codigoIngreso,jdbcType=INTEGER},
+      </if>
+      <if test="fechaRegistro != null" >
+        #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="nroFactura != null" >
+        #{nroFactura,jdbcType=INTEGER},
+      </if>
+      <if test="codigo_proveedor != null" >
+        #{codigo_proveedor,jdbcType=INTEGER},
+      </if>
+      <if test="montoSalida != null" >
+        #{montoSalida,jdbcType=DOUBLE},
+      </if>
+      <if test="observaciones != null" >
+        #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.EgresoExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from egresos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update egresos
+    <set >
+      <if test="record.codigoEgreso != null" >
+        codigo_egreso = #{record.codigoEgreso,jdbcType=INTEGER},
+      </if>
+      <if test="record.fechaEgreso != null" >
+        fecha_egreso = #{record.fechaEgreso,jdbcType=DATE},
+      </if>
+      <if test="record.codigoUsuario != null" >
+        codigo_usuario = #{record.codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigoPartida != null" >
+        codigo_partida = #{record.codigoPartida,jdbcType=CHAR},
+      </if>
+      <if test="record.codigoIngreso != null" >
+        codigo_ingreso = #{record.codigoIngreso,jdbcType=INTEGER},
+      </if>
+      <if test="record.fechaRegistro != null" >
+        fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="record.nroFactura != null" >
+        nro_factura = #{record.nroFactura,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigo_proveedor != null" >
+        codigo_proveedor = #{record.codigo_proveedor,jdbcType=INTEGER},
+      </if>
+      <if test="record.montoSalida != null" >
+        monto_salida = #{record.montoSalida,jdbcType=DOUBLE},
+      </if>
+      <if test="record.observaciones != null" >
+        observaciones = #{record.observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update egresos
+    set codigo_egreso = #{record.codigoEgreso,jdbcType=INTEGER},
+      fecha_egreso = #{record.fechaEgreso,jdbcType=DATE},
+      codigo_usuario = #{record.codigoUsuario,jdbcType=INTEGER},
+      codigo_partida = #{record.codigoPartida,jdbcType=CHAR},
+      codigo_ingreso = #{record.codigoIngreso,jdbcType=INTEGER},
+      fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      nro_factura = #{record.nroFactura,jdbcType=INTEGER},
+      codigo_proveedor = #{record.codigo_proveedor,jdbcType=INTEGER},
+      monto_salida = #{record.montoSalida,jdbcType=DOUBLE},
+      observaciones = #{record.observaciones,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Egreso" >
+    <!--
+      
+      
+      
+    -->
+    update egresos
+    <set >
+      <if test="fechaEgreso != null" >
+        fecha_egreso = #{fechaEgreso,jdbcType=DATE},
+      </if>
+      <if test="codigoUsuario != null" >
+        codigo_usuario = #{codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="codigoPartida != null" >
+        codigo_partida = #{codigoPartida,jdbcType=CHAR},
+      </if>
+      <if test="codigoIngreso != null" >
+        codigo_ingreso = #{codigoIngreso,jdbcType=INTEGER},
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="nroFactura != null" >
+        nro_factura = #{nroFactura,jdbcType=INTEGER},
+      </if>
+      <if test="codigo_proveedor != null" >
+        codigo_proveedor = #{codigo_proveedor,jdbcType=INTEGER},
+      </if>
+      <if test="montoSalida != null" >
+        monto_salida = #{montoSalida,jdbcType=DOUBLE},
+      </if>
+      <if test="observaciones != null" >
+        observaciones = #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_egreso = #{codigoEgreso,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.Egreso" >
+    <!--
+      
+      
+      
+    -->
+    update egresos
+    set fecha_egreso = #{fechaEgreso,jdbcType=DATE},
+      codigo_usuario = #{codigoUsuario,jdbcType=INTEGER},
+      codigo_partida = #{codigoPartida,jdbcType=CHAR},
+      codigo_ingreso = #{codigoIngreso,jdbcType=INTEGER},
+      fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      nro_factura = #{nroFactura,jdbcType=INTEGER},
+      codigo_proveedor = #{codigo_proveedor,jdbcType=INTEGER},
+      monto_salida = #{montoSalida,jdbcType=DOUBLE},
+      observaciones = #{observaciones,jdbcType=VARCHAR}
+    where codigo_egreso = #{codigoEgreso,jdbcType=INTEGER}
+  </update>
+  
+   <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('egresos')}   
+  </update>
+  
+  
+  <update id="obtenerFechaHoraServidor" parameterType="Map" statementType="CALLABLE">
+  		{#{fechaHoraServidor,jdbcType=DATE,mode=OUT} = call ObtenerFechaServidor() }   
+	</update>
+</mapper>

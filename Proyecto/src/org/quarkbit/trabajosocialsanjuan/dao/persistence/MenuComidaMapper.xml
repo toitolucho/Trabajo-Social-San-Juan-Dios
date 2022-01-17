@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.quarkbit.trabajosocialsanjuan.dao.persistence.MenuComidaMapper" >
+  <resultMap id="BaseResultMap" type="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComida" >
+    <!--
+      
+      
+      
+    -->
+    <id column="codigo_menu_comida" property="codigoMenuComida" jdbcType="INTEGER" />
+    <result column="nombre_menu" property="nombreMenu" jdbcType="VARCHAR" />
+    <result column="fecha_inicio" property="fechaInicio" jdbcType="DATE" />
+    <result column="fecha_fin" property="fechaFin" jdbcType="DATE" />
+    <result column="fecha_registro" property="fechaRegistro" jdbcType="DATE" />
+    <result column="codigo_usuario" property="codigoUsuario" jdbcType="INTEGER" />
+    <result column="codigo_estado" property="codigoEstado" jdbcType="CHAR" />
+    <result column="monto_total" property="montoTotal" jdbcType="DOUBLE" />
+    <result column="observaciones" property="observaciones" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      
+      
+      
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      
+      
+      
+    -->
+    codigo_menu_comida, nombre_menu, fecha_inicio, fecha_fin, fecha_registro, codigo_usuario, 
+    codigo_estado, monto_total, observaciones
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComidaExample" >
+    <!--
+      
+      
+      
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from menus_comidas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from menus_comidas
+    where codigo_menu_comida = #{codigoMenuComida,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    delete from menus_comidas
+    where codigo_menu_comida = #{codigoMenuComida,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComidaExample" >
+    <!--
+      
+      
+      
+    -->
+    delete from menus_comidas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComida" >
+    <!--
+      
+      
+      
+    -->
+    insert into menus_comidas (codigo_menu_comida, nombre_menu, fecha_inicio, 
+      fecha_fin, fecha_registro, codigo_usuario, 
+      codigo_estado, monto_total, observaciones
+      )
+    values (DEFAULT, #{nombreMenu,jdbcType=VARCHAR}, #{fechaInicio,jdbcType=DATE}, 
+      #{fechaFin,jdbcType=DATE},DEFAULT, #{codigoUsuario,jdbcType=INTEGER}, 
+      #{codigoEstado,jdbcType=CHAR}, #{montoTotal,jdbcType=DOUBLE}, #{observaciones,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComida" >
+    <!--
+      
+      
+      
+    -->
+    insert into menus_comidas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codigoMenuComida != null" >
+        codigo_menu_comida,
+      </if>
+      <if test="nombreMenu != null" >
+        nombre_menu,
+      </if>
+      <if test="fechaInicio != null" >
+        fecha_inicio,
+      </if>
+      <if test="fechaFin != null" >
+        fecha_fin,
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro,
+      </if>
+      <if test="codigoUsuario != null" >
+        codigo_usuario,
+      </if>
+      <if test="codigoEstado != null" >
+        codigo_estado,
+      </if>
+      <if test="montoTotal != null" >
+        monto_total,
+      </if>
+      <if test="observaciones != null" >
+        observaciones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codigoMenuComida != null" >
+        #{codigoMenuComida,jdbcType=INTEGER},
+      </if>
+      <if test="nombreMenu != null" >
+        #{nombreMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaInicio != null" >
+        #{fechaInicio,jdbcType=DATE},
+      </if>
+      <if test="fechaFin != null" >
+        #{fechaFin,jdbcType=DATE},
+      </if>
+      <if test="fechaRegistro != null" >
+        #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="codigoUsuario != null" >
+        #{codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="codigoEstado != null" >
+        #{codigoEstado,jdbcType=CHAR},
+      </if>
+      <if test="montoTotal != null" >
+        #{montoTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="observaciones != null" >
+        #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComidaExample" resultType="java.lang.Integer" >
+    <!--
+      
+      
+      
+    -->
+    select count(*) from menus_comidas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update menus_comidas
+    <set >
+      <if test="record.codigoMenuComida != null" >
+        codigo_menu_comida = #{record.codigoMenuComida,jdbcType=INTEGER},
+      </if>
+      <if test="record.nombreMenu != null" >
+        nombre_menu = #{record.nombreMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fechaInicio != null" >
+        fecha_inicio = #{record.fechaInicio,jdbcType=DATE},
+      </if>
+      <if test="record.fechaFin != null" >
+        fecha_fin = #{record.fechaFin,jdbcType=DATE},
+      </if>
+      <if test="record.fechaRegistro != null" >
+        fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="record.codigoUsuario != null" >
+        codigo_usuario = #{record.codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="record.codigoEstado != null" >
+        codigo_estado = #{record.codigoEstado,jdbcType=CHAR},
+      </if>
+      <if test="record.montoTotal != null" >
+        monto_total = #{record.montoTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.observaciones != null" >
+        observaciones = #{record.observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      
+      
+      
+    -->
+    update menus_comidas
+    set codigo_menu_comida = #{record.codigoMenuComida,jdbcType=INTEGER},
+      nombre_menu = #{record.nombreMenu,jdbcType=VARCHAR},
+      fecha_inicio = #{record.fechaInicio,jdbcType=DATE},
+      fecha_fin = #{record.fechaFin,jdbcType=DATE},
+      fecha_registro = #{record.fechaRegistro,jdbcType=DATE},
+      codigo_usuario = #{record.codigoUsuario,jdbcType=INTEGER},
+      codigo_estado = #{record.codigoEstado,jdbcType=CHAR},
+      monto_total = #{record.montoTotal,jdbcType=DOUBLE},
+      observaciones = #{record.observaciones,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComida" >
+    <!--
+      
+      
+      
+    -->
+    update menus_comidas
+    <set >
+      <if test="nombreMenu != null" >
+        nombre_menu = #{nombreMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaInicio != null" >
+        fecha_inicio = #{fechaInicio,jdbcType=DATE},
+      </if>
+      <if test="fechaFin != null" >
+        fecha_fin = #{fechaFin,jdbcType=DATE},
+      </if>
+      <if test="fechaRegistro != null" >
+        fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      </if>
+      <if test="codigoUsuario != null" >
+        codigo_usuario = #{codigoUsuario,jdbcType=INTEGER},
+      </if>
+      <if test="codigoEstado != null" >
+        codigo_estado = #{codigoEstado,jdbcType=CHAR},
+      </if>
+      <if test="montoTotal != null" >
+        monto_total = #{montoTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="observaciones != null" >
+        observaciones = #{observaciones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where codigo_menu_comida = #{codigoMenuComida,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quarkbit.trabajosocialsanjuan.dao.domain.MenuComida" >
+    <!--
+      
+      
+      
+    -->
+    update menus_comidas
+    set nombre_menu = #{nombreMenu,jdbcType=VARCHAR},
+      fecha_inicio = #{fechaInicio,jdbcType=DATE},
+      fecha_fin = #{fechaFin,jdbcType=DATE},
+      fecha_registro = #{fechaRegistro,jdbcType=DATE},
+      codigo_usuario = #{codigoUsuario,jdbcType=INTEGER},
+      codigo_estado = #{codigoEstado,jdbcType=CHAR},
+      monto_total = #{montoTotal,jdbcType=DOUBLE},
+      observaciones = #{observaciones,jdbcType=VARCHAR}
+    where codigo_menu_comida = #{codigoMenuComida,jdbcType=INTEGER}
+  </update>
+  
+  <update id="obtenerUltimoId" parameterType="Map" statementType="CALLABLE">
+  		{#{ultimoId,javaType=int,jdbcType=INTEGER,mode=OUT} = call obtener_ultimo_codigo('menus_comidas')}   
+  </update>
+</mapper>

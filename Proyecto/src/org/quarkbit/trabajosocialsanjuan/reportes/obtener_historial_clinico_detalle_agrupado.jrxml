@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_historial_clinico_detalle" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="be02d470-1944-4033-82e9-4e01e3467dcb">
+	<property name="ireport.zoom" value="1.7715610000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numero_hc_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numero_consulta_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_historial_clinico_detalle($P{numero_hc_aux}, null)
+AS
+(
+  numero_propiedad		INTEGER,
+  nombre_propiedad		CHARACTER VARYING(150),
+  abreviacion			CHARACTER VARYING(100),
+  composicion			CHARACTER VARYING(200),
+  descripcion_hc_propiedad	TEXT,
+  nombre_propiedad_tipo		CHARACTER VARYING(200),
+  descripcion_propiedad		TEXT,
+  numero_propiedad_tipo		INTEGER,
+  numero_hc_consulta_detalle	INTEGER,
+  numero_hc			INTEGER,
+  numero_consulta		INTEGER,
+  fecha_registro		DATE,
+  descripcion_detalle		TEXT
+)]]>
+	</queryString>
+	<field name="numero_consulta" class="java.lang.Integer"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<field name="nombre_propiedad" class="java.lang.String"/>
+	<field name="nombre_propiedad_tipo" class="java.lang.String"/>
+	<field name="descripcion_detalle" class="java.lang.String"/>
+	<group name="nombre_propiedad_tipo_group">
+		<groupExpression><![CDATA[$F{nombre_propiedad_tipo}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<line>
+					<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="0" width="1" height="14"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement uuid="e295b3f7-6fe1-4107-a8ee-bd7b257430d6" mode="Opaque" x="0" y="0" width="541" height="14" forecolor="#FFFFFF" backcolor="#666666"/>
+					<textElement>
+						<font size="9" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA['             ' +$F{nombre_propiedad_tipo}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="13" width="542" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="541" y="0" width="1" height="14"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="cebe9d46-8682-468e-9723-39ab98214ade" x="125" y="6" width="309" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTORIAL DE CATEGORIAS ATENDIDAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6da7734c-2daa-44d9-a2d7-3395c24afcf5" x="60" y="0" width="64" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c6c0438e-8b1d-49ad-ab3c-0419fa7927d9" x="8" y="0" width="50" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Consulta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f995d71-dfd4-473e-8e8b-999972441c75" x="125" y="0" width="215" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad2096ed-9e11-49fe-ae23-14662af32422" x="346" y="0" width="194" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="0" width="542" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="12" width="542" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="0" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="541" y="0" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement uuid="af321f31-b1fa-4414-8167-089db664281f" x="27" y="1" width="30" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_consulta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement uuid="7df295c1-03ce-47e4-bf8e-391bc99a36fe" x="59" y="1" width="64" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0a35600c-d159-4754-a2f4-fbd8fa481492" x="125" y="1" width="215" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_propiedad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4a55f545-d88b-45de-8ce7-c10152f0dc84" x="340" y="0" width="200" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion_detalle}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="13" width="542" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="0" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e7cfb4f3-0c5e-4e5c-8d8d-bf9089ef28ef" x="541" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

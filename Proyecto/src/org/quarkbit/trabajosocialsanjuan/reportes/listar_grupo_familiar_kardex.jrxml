@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listar_grupo_familiar_kardex" language="groovy" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3a774ba5-aab9-4420-aa7c-63eb0c14b56b">
+	<property name="ireport.zoom" value="4.594972986357225"/>
+	<property name="ireport.x" value="1155"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigo_kardex_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM listar_grupo_familiar_kardex($P{codigo_kardex_aux})
+AS
+(
+	nombre_completo		TEXT,
+	relacion		CHARACTER VARYING(100),
+	edad			INTEGER,
+	estado_civil		TEXT,
+	grado_instruccion	TEXT,
+	nombre_empleo		CHARACTER VARYING(200),
+	monto_ingreso		DOUBLE PRECISION,
+	observaciones		TEXT
+)]]>
+	</queryString>
+	<field name="nombre_completo" class="java.lang.String"/>
+	<field name="relacion" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="grado_instruccion" class="java.lang.String"/>
+	<field name="nombre_empleo" class="java.lang.String"/>
+	<field name="monto_ingreso" class="java.lang.Double"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="bd7b59cf-cb78-4a91-b282-a4139e297766" x="207" y="0" width="130" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO FAMILIAR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement uuid="582e05e7-dd97-4233-80fc-1119d0890e60" positionType="FixRelativeToBottom" x="0" y="22" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="d215b471-1f82-4711-8a25-ab53798985ab" style="Column header" x="10" y="3" width="155" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombre y Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7837067f-5c97-4f38-8c88-1820291dcd60" style="Column header" x="171" y="3" width="80" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Relacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84546451-e8ff-416d-b7c3-547afa0f0c8c" style="Column header" x="252" y="3" width="28" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c73b86bc-7bea-4c19-a2f8-313cec1b4886" style="Column header" x="284" y="3" width="69" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Estado Civil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67b5de93-18d0-4671-a0fc-f7dbddfb3332" style="Column header" x="355" y="3" width="77" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Grado de Instrucción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0a70198a-79ef-48e5-a7c1-7a9b90a4ae11" style="Column header" x="433" y="3" width="70" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Profesión  u Oficio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4a21991d-2829-411f-ad93-e13dd6d7ef72" style="Column header" x="503" y="3" width="48" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Ingresos]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f241de2d-cd0c-4817-8972-1d83cb588058" positionType="FixRelativeToBottom" x="0" y="1" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="1e4ef85a-4dde-44f1-9671-6e7fd77a539a" mode="Opaque" x="0" y="1" width="1" height="22" forecolor="#000000" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="4805bfcb-0ccf-442d-b72f-26b423bbb1ce" mode="Opaque" x="555" y="1" width="1" height="22" forecolor="#000000" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<line>
+				<reportElement uuid="2c2adca1-b793-4445-b8c3-c0f7e442ef04" positionType="FixRelativeToBottom" x="0" y="12" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="88535bed-e304-4450-8726-eba672dfe3a6" style="Detail" x="10" y="0" width="155" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_completo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="65979784-9928-49c3-85d4-fa7087bc8076" style="Detail" x="171" y="0" width="80" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{relacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="51def6c8-5b48-4aeb-9b23-85a6e80ca9ea" style="Detail" x="252" y="0" width="28" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="71ab463e-915e-461a-b0c6-ea5967874fee" style="Detail" x="285" y="0" width="69" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6e4abc67-ff96-4949-8a09-1b3fd489d1a2" style="Detail" x="355" y="0" width="77" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grado_instruccion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bdc4c020-c7b6-4671-a9d1-aa6f1d17874c" style="Detail" x="433" y="0" width="69" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empleo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="362127df-af77-46f7-849d-40165375b233" style="Detail" x="503" y="0" width="48" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_ingreso}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="76c50f18-3d0c-4b36-96b3-6c28d8539785" mode="Opaque" x="0" y="0" width="1" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="1a347041-8a5e-499e-a5ca-9219cad3f4a9" mode="Opaque" x="555" y="0" width="1" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="7" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

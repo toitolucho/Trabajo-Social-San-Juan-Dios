@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="obtener_reporte_egresos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1aaae14-8bf6-4dc5-83dd-5b271880bc6a">
+	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigo_usuario_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_proveedor_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_partida_aux" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM obtener_reporte_egresos($P{codigo_usuario_aux},$P{codigo_proveedor_aux}, $P{codigo_partida_aux},  $P{fecha_inicio} , $P{fecha_fin})
+AS
+(
+	codigo_egreso	INTEGER,
+	fecha_egreso	DATE,
+	codigo_usuario	INTEGER,
+	codigo_partida	CHARACTER(10),
+	codigo_ingreso	INTEGER,
+	fecha_registro	DATE,
+	nro_factura	INTEGER,
+	codigo_proveedor INTEGER,
+	monto_salida	DOUBLE PRECISION,
+	observaciones 	TEXT,
+	nombre_partida	CHARACTER VARYING(250),
+	nombre_proveedor CHARACTER VARYING(200),
+	nit_proveedor	CHARACTER(15),
+	codigo_persona	INTEGER,
+	nombre_usuario	CHARACTER VARYING(200),
+	codigo_tipo_usuario CHARACTER(1),
+	nombre_completo	TEXT,
+	--codigo_tipo_persona CHARACTER(1),
+	tipo_usuario	TEXT,
+	tipo_pesona	TEXT
+);]]>
+	</queryString>
+	<field name="codigo_egreso" class="java.lang.Integer"/>
+	<field name="fecha_egreso" class="java.sql.Date"/>
+	<field name="codigo_usuario" class="java.lang.Integer"/>
+	<field name="codigo_partida" class="java.lang.String"/>
+	<field name="codigo_ingreso" class="java.lang.Integer"/>
+	<field name="fecha_registro" class="java.sql.Date"/>
+	<field name="nro_factura" class="java.lang.Integer"/>
+	<field name="codigo_proveedor" class="java.lang.Integer"/>
+	<field name="monto_salida" class="java.lang.Double"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="nombre_partida" class="java.lang.String"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="nit_proveedor" class="java.lang.String"/>
+	<field name="codigo_persona" class="java.lang.Integer"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="codigo_tipo_usuario" class="java.lang.String"/>
+	<field name="nombre_completo" class="java.lang.String"/>
+	<field name="tipo_usuario" class="java.lang.String"/>
+	<field name="tipo_pesona" class="java.lang.String"/>
+	<variable name="Monto_Total_Egreso" class="java.lang.Double" resetType="Group" resetGroup="nombre_partida" calculation="Sum">
+		<variableExpression><![CDATA[$F{monto_salida}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="nombre_partida">
+		<groupExpression><![CDATA[$F{nombre_partida}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement uuid="38db4bcb-0ee3-4c79-b389-f673916f036f" style="SubTitle" mode="Opaque" x="0" y="0" width="555" height="17" forecolor="#333333" backcolor="#CCCCCC"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA['  Egreso : ' +$F{nombre_partida}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="be33f4e5-4242-4848-9dec-5af6bb26fb19" style="Column header" x="4" y="17" width="70" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Fecha Salida]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8fb480f8-d1a5-4424-bcae-7e853be3689a" style="Column header" x="79" y="17" width="84" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Nº de Factura]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="72480da4-8dce-4188-935f-2b862e8173e1" style="Column header" x="173" y="17" width="164" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Proveedor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8e9b57d1-a2dc-49f3-b9da-99e807e0eeeb" style="Column header" x="337" y="17" width="111" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[NIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="cce096ad-87b0-48b4-9c48-9c238f6ab17e" style="Column header" x="448" y="17" width="105" height="11"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Monto]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="a67d7d81-3ac2-4ffa-b0f3-0a3893f00f1a" positionType="FixRelativeToBottom" x="0" y="29" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="3f1206c1-746d-49d7-8d21-cd2746b23e29" positionType="FixRelativeToBottom" x="254" y="14" width="1" height="14"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="cd27642b-7813-4f3f-a6e7-c2df2013f228" positionType="FixRelativeToBottom" x="0" y="17" width="1" height="13"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="b1a872ab-cc5c-47a2-8e83-489e679dcae3" positionType="FixRelativeToBottom" x="554" y="17" width="1" height="13"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement uuid="7a1cb496-b08b-4615-8a11-8433cf8afd14" x="455" y="0" width="100" height="11"/>
+					<textElement>
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Monto_Total_Egreso}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="17eeb373-b4ba-4c19-963b-72c577839fc3" x="355" y="0" width="100" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Monto Total Egreso :]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="42ef142c-99f5-4f10-a00f-41e33cf95722" style="Title" x="148" y="10" width="263" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte de Egresos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="05ed978f-5a20-4cfa-8435-10ccd58aaded" x="278" y="28" width="13" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="cbe9b3dd-b03a-4f1d-9f0f-d3b08e641495" x="293" y="28" width="55" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3e825675-f9af-426b-9fe7-440f021c0de9" x="208" y="28" width="20" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Del]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="0b8468f8-84ed-4441-b64f-64f2a1c0f608" x="227" y="28" width="51" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_inicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="d7587e04-2014-46df-8bfe-95d98d038472" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="4982f9d6-a43f-4d6b-8823-2dc71903c7af" positionType="FixRelativeToBottom" x="0" y="13" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="4cf2535e-1f95-4c32-9570-610b4508c2a1" style="Detail" x="453" y="0" width="100" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_salida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="21a6b608-4b52-4589-8856-f06b2671f909" style="Detail" x="4" y="0" width="70" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_egreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="668b1fdb-28bc-4672-b13c-18462c65cf1c" style="Detail" x="79" y="0" width="84" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0ecb0e7-20f3-4cc9-ae2e-7ddc6374df80" style="Detail" x="173" y="0" width="164" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="67f5e785-b766-48e9-9f87-7fe6a5966959" style="Detail" x="348" y="0" width="100" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nit_proveedor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="36292356-544c-457b-8426-81984f6600f6" positionType="FixRelativeToBottom" x="0" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="0d43c7ab-cf62-42ec-8c1d-e64ac989bfc1" positionType="FixRelativeToBottom" x="554" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="deedf2ea-49b4-4b95-abe8-3821fec5ad7d" positionType="FixRelativeToBottom" x="76" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="628992f1-b44f-482e-8845-c28ab4a6c559" positionType="FixRelativeToBottom" x="167" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="01cf9712-14ad-43f7-bd13-51caed4fe1e7" positionType="FixRelativeToBottom" x="340" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="15538ba9-4e55-49a6-aa73-4b8371f858eb" positionType="FixRelativeToBottom" x="450" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="19913d80-d20a-41fa-a6dc-7fc9c689b855" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="26e574c6-fe44-4e9a-b5f0-0170de8d932b" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d5d68dfe-7fb6-4880-872b-e571a87fac92" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="ac8ec426-9fec-4876-b19d-bd8772c144ea" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

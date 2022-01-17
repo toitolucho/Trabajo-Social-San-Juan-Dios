@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listar_documentos_kardex" language="groovy" columnCount="2" pageWidth="612" pageHeight="792" columnWidth="303" columnSpacing="5" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3f647fc9-32bf-4f4f-94ad-762210fa0a81">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_kardex_aux" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM listar_documentos_kardex($P{codigo_kardex_aux})
+AS
+(	codigo_documento	INTEGER,
+	nombre_documento	CHARACTER VARYING(150),
+	cuenta			TEXT
+)]]>
+	</queryString>
+	<field name="codigo_documento" class="java.lang.Integer"/>
+	<field name="nombre_documento" class="java.lang.String"/>
+	<field name="cuenta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e0345174-66c7-497f-b434-5430ba08d3e1" x="13" y="0" width="200" height="12"/>
+				<textElement>
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Documentos con que cuenta: (marque con una cruz)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9b6351ec-2b28-4eda-a217-e7ec474d5fe0" x="23" y="1" width="24" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1d7a6a13-1e53-4e89-9a66-9717152a3f66" x="47" y="1" width="166" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ffdd19ed-b1ee-41b3-b8f8-8fbd10d311f8" x="213" y="1" width="23" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

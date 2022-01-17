@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="D:\Proyectos\TrabajoSocialSanJuan\Utilidades\postgresql-9.3-1100.jdbc4.jar" />
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="org.postgresql.Driver"
+        connectionURL="jdbc:postgresql://localhost:5432/trabajosocialsanjuan"
+        userId="postgres"
+        password="postgres">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="org.quarkbit.trabajosocialsanjuan.dao.domain" targetProject="D:\Proyectos\TrabajoSocialSanJuan\Proyecto\src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="org.quarkbit.trabajosocialsanjuan.dao.persistence"  targetProject="D:\Proyectos\TrabajoSocialSanJuan\Proyecto\src">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="org.quarkbit.trabajosocialsanjuan.dao.persistence"  targetProject="D:\Proyectos\TrabajoSocialSanJuan\Proyecto\src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+<!--     <table tableName="categorias_comidas" domainObjectName="CategoriaComida" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--       <generatedKey column="ID" sqlStatement="DB2" identity="true" /> -->
+<!--       <columnOverride column="codigo_categoria" property="codigoCategoria" /> -->
+<!-- 		<columnOverride column="nombre_categoria" property="nombreCategoria" /> -->
+<!-- 		<columnOverride column="orden_categoria" property="ordenCategoria" /> -->
+<!-- 		<columnOverride column="estado_categoria" property="estadoCategoria" /> -->
+<!--       	<columnOverride column="hora_inicio" property="horaInicio" /> -->
+<!-- 		<columnOverride column="hora_fin" property="horaFin" /> -->
+
+<!--     </table> -->
+    
+<!--     <table tableName="comidas" domainObjectName="Comida" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_comida" property="codigoComida" /> -->
+<!-- 		<columnOverride column="nombre_comida" property="nombreComida" /> -->
+<!-- 		<columnOverride Scolumn="codigo_categoria" property="codigoCategoria" /> -->
+<!-- 		<columnOverride column="precio_estimado" property="precioEstimado" />     -->
+<!--     </table> -->
+    
+<!--     <table tableName="comidas" domainObjectName="Comida" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_comida" property="codigoComida" /> -->
+<!-- 		<columnOverride column="nombre_comida" property="nombreComida" /> -->
+<!-- 		<columnOverride column="codigo_categoria" property="codigoCategoria" /> -->
+<!-- 		<columnOverride column="precio_estimado" property="precioEstimado" />     -->
+<!--     </table> -->
+    
+<!--     <table tableName="departamentos" domainObjectName="Departamento" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_pais" property="codigoPais" /> -->
+<!-- 		<columnOverride column="codigo_departamento" property="codigoDepartamento" /> -->
+<!-- 		<columnOverride column="nombre_departamento" property="nombreDepartamento" />    -->
+<!--     </table> -->
+    
+<!--     <table tableName="egresos" domainObjectName="Egreso" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_egreso" property="codigoEgreso" /> -->
+<!-- 		<columnOverride column="fecha_egreso" property="fechaEgreso" /> -->
+<!-- 		<columnOverride column="codigo_usuario" property="codigoUsuario" /> -->
+<!-- 		<columnOverride column="codigo_partida" property="codigoPartida" /> -->
+<!-- 		<columnOverride column="codigo_ingreso" property="codigoIngreso" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="nro_factura" property="nroFactura" /> -->
+<!-- 		<columnOverride column="monto_salida" property="montoSalida" />    -->
+<!--     </table> -->
+    
+<!--      <table tableName="empleos" domainObjectName="Empleo" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_empleo" property="codigoEmpleo" />		 -->
+<!-- 		<columnOverride column="nombre_empleo" property="nombreEmpleo" />    -->
+<!--     </table> -->
+    
+<!--     <table tableName="ingresos" domainObjectName="Ingreso"> -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_ingreso" property="codigoIngreso" /> -->
+<!-- 		<columnOverride column="fecha_ingreso" property="fechaIngreso" /> -->
+<!-- 		<columnOverride column="codigo_usuario" property="codigoUsuario" /> -->
+<!-- 		<columnOverride column="monto_ingreso" property="montoIngreso" /> -->
+<!-- 		<columnOverride column="monto_actual" property="montoActual" /> -->
+<!-- 		<columnOverride column="codigo_ingreso_tipo" property="codigoIngresoTipo" /> -->
+<!-- 		<columnOverride column="detalle_ingreso" property="detalleIngreso" /> -->
+<!-- 		<columnOverride column="nombre_ingreso" property="nombreIngreso" /> -->
+		  
+		
+<!--     </table> -->
+	
+<!-- 	<table tableName="ingresos_tipos" domainObjectName="IngresoTipo" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_ingreso_tipo" property="codigoIngresoTipo" />		 -->
+<!-- 		<columnOverride column="nombre_ingreso_tipo" property="nombreIngresoTipo" />    -->
+<!--     </table> -->
+    
+<!--     <table tableName="instituciones" domainObjectName="Institucion"> -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_institucion" property="codigoInstitucion" /> -->
+<!-- 		<columnOverride column="nombre_institucion" property="nombreInstitucion" /> -->
+<!-- 		<columnOverride column="direccion" property="Direccion" /> -->
+<!-- 		<columnOverride column="telefono" property="Telefono" />    -->
+<!--     </table> -->
+    
+<!--     <table tableName="lugares" domainObjectName="Lugar"> -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_pais" property="codigoPais" /> -->
+<!-- 		<columnOverride column="codigo_departamento" property="codigoDepartamento" /> -->
+<!-- 		<columnOverride column="codigo_provincia" property="codigoProvincia" /> -->
+<!-- 		<columnOverride column="codigo_lugar" property="codigoLugar" /> -->
+<!-- 		<columnOverride column="nombre_lugar" property="nombreLugar" />   -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="menus_comidas" domainObjectName="MenuComida" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_menu_comida" property="codigoMenuComida" /> -->
+<!-- 		<columnOverride column="nombre_menu" property="nombreMenu" /> -->
+<!-- 		<columnOverride column="fecha_inicio" property="fechaInicio" /> -->
+<!-- 		<columnOverride column="fecha_fin" property="fechaFin" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="codigo_usuario" property="codigoUsuario" /> -->
+<!-- 		<columnOverride column="codigo_estado" property="codigoEstado" /> -->
+<!-- 		<columnOverride column="monto_total" property="montoTotal" />  -->
+<!--     </table> -->
+    
+    
+<!--      <table tableName="menus_comidas_detalle" domainObjectName="MenuComidaDetalle"> -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_menu_comida_detalle" property="codigoMenuComidaDetalle" /> -->
+<!-- 		<columnOverride column="codigo_menu_comida" property="codigoMenuComida" /> -->
+<!-- 		<columnOverride column="codigo_comida" property="codigoComida" /> -->
+<!-- 		<columnOverride column="codigo_categoria" property="codigoCategoria" /> -->
+<!-- 		<columnOverride column="fecha" property="fecha" /> -->
+<!-- 		<columnOverride column="hora_inicio" property="horaInicio" /> -->
+<!-- 		<columnOverride column="hora_fin" property="horaFin" /> -->
+<!-- 		<columnOverride column="cantidad_personas" property="cantidadPersonas" /> -->
+<!-- 		<columnOverride column="precio_unitario" property="precioUnitario" />   -->
+<!--     </table> -->
+    
+<!--     <table tableName="paises" domainObjectName="Pais" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_pais" property="codigoPais" />		 -->
+<!-- 		<columnOverride column="nombre_pais" property="nombrePais" />    -->
+<!--     </table> -->
+    
+<!--     <table tableName="parentescos" domainObjectName="Parentesco" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_parentesco" property="codigoParentesco" />		 -->
+<!-- 		<columnOverride column="nombre_parentesco" property="nombreParentesco" />    -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="partidas" domainObjectName="Partida" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_partida" property="codigoPartida" /> -->
+<!-- 		<columnOverride column="codigo_partida_padre" property="codigoPartidaPadre" /> -->
+<!-- 		<columnOverride column="nombre_partida" property="nombrePartida" /> -->
+<!-- 		<columnOverride column="descripcion_partida" property="descripcion" />   -->
+<!--     </table> -->
+    
+<!--     <table tableName="personas" domainObjectName="Persona" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_persona" property="codigoPersona" /> -->
+<!-- 		<columnOverride column="di_persona" property="diPersona" /> -->
+<!-- 		<columnOverride column="codigo_tipo_persona" property="codigoTipoPersona" /> -->
+<!-- 		<columnOverride column="codigo_empleo" property="codigoEmpleo" /> -->
+<!-- 		<columnOverride column="grado_instruccion" property="gradoInstruccion" /> -->
+<!-- 		<columnOverride column="estado_civil" property="estadoCivil" />    -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="personas_datos_nacimiento" domainObjectName="PersonaDatosNacimiento" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_persona" property="codigoPersona" /> -->
+<!-- 		<columnOverride column="fecha_nacimiento" property="fechaNacimiento" /> -->
+<!-- 		<columnOverride column="codigo_paisn" property="codigoPaisn" /> -->
+<!-- 		<columnOverride column="codigo_departamenton" property="codigoDepartamenton" /> -->
+<!-- 		<columnOverride column="codigo_provincian" property="codigoProvincian" /> -->
+<!-- 		<columnOverride column="codigo_lugarn" property="codigoLugarn" /> -->
+<!-- 		<columnOverride column="codigo_nacionalidad" property="codigoNacionalidad" />  -->
+<!--     </table> -->
+    
+<!--     <table tableName="personas_kardex" domainObjectName="PersonaKardex" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_kardex" property="codigoKardex" /> -->
+<!-- 		<columnOverride column="numero_kardex" property="numeroKardex" /> -->
+<!-- 		<columnOverride column="codigo_persona" property="codigoPersona" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="fecha_ingreso" property="fechaIngreso" /> -->
+<!-- 		<columnOverride column="fecha_egreso" property="fechaEgreso" /> -->
+<!-- 		<columnOverride column="motivo_ingreso" property="motivoIngreso" /> -->
+<!-- 		<columnOverride column="codigo_persona_ingreso" property="codigoPersonaIngreso" /> -->
+<!-- 		<columnOverride column="motivo_egreso" property="motivoEgreso" /> -->
+<!-- 		<columnOverride column="codigo_persona_egreso" property="codigoPersonaEgreso" /> -->
+<!-- 		<columnOverride column="codigo_persona_trab_social" property="codigoPersonaTrabSocial" /> -->
+<!-- 		<columnOverride column="nombre_kardex" property="nombreKardex" /> -->
+<!-- 		<columnOverride column="codigo_usuario" property="codigoUsuario" /> -->
+<!-- 		<columnOverride column="codigo_institucion" property="codigoInstitucion" /> -->
+<!-- 		<columnOverride column="ruta_archivo_foto" property="rutaArchivoFoto" />  -->
+<!-- 		<columnOverride column="codigo_estado" property="codigoEstado" /> -->
+		
+<!--     </table> -->
+    
+    
+<!--     <table tableName="personas_kardex_documentos" domainObjectName="PersonaKardexDocumento" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_kardex" property="codigoKardex" /> -->
+<!-- 		<columnOverride column="codigo_documento" property="codigoDocumento" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="tramito_trab_social" property="tramitoTrabSocial" />   -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="personas_kardex_familiares" domainObjectName="PersonaKardexFamiliar" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_kardex" property="codigoKardex" /> -->
+<!-- 		<columnOverride column="codigo_persona" property="codigoPersona" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="codigo_parentesco" property="codigoParentesco" /> -->
+<!-- 		<columnOverride column="monto_ingreso" property="montoIngreso" />		  -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="proveedores" domainObjectName="Proveedor" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_proveedor" property="codigoProveedor" /> -->
+<!-- 		<columnOverride column="nombre_proveedor" property="nombreProveedor" /> -->
+<!-- 		<columnOverride column="estado_proveedor" property="estadoProveedor" /> -->
+<!-- 		<columnOverride column="nit_proveedor" property="nitProveedor" />   -->
+<!--     </table> -->
+    
+    
+<!--     <table tableName="provincias" domainObjectName="Provincia" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_pais" property="codigoPais" /> -->
+<!-- 		<columnOverride column="codigo_departamento" property="codigoDepartamento" /> -->
+<!-- 		<columnOverride column="codigo_provincia" property="codigoProvincia" /> -->
+<!-- 		<columnOverride column="nombre_provincia" property="nombreProvincia" />   -->
+<!--     </table> -->
+    
+<!--     <table tableName="usuarios" domainObjectName="Usuario" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_usuario" property="codigoUsuario" /> -->
+<!-- 		<columnOverride column="codigo_persona" property="codigoPersona" /> -->
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="nombre_usuario" property="nombreUsuario" />		 -->
+<!-- 		<columnOverride column="codigo_tipo" property="codigoTipo" /> -->
+<!-- 		<columnOverride column="codigo_institucion" property="codigoInstitucion" /> -->
+<!--     </table> -->
+
+<!--     <table tableName="documentos" domainObjectName="Documento" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_documento" property="codigoDocumento" />		 -->
+<!-- 		<columnOverride column="nombre_documento" property="nombreDocumento" />   -->
+<!--     </table> -->
+
+<!--     <table tableName="informes" domainObjectName="Informe" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_informe" property="codigoInforme" />		 -->
+<!-- 		<columnOverride column="codigo_kardex" property="codigoKardex" /> -->
+<!-- 		<columnOverride column="codigo_institucion" property="codigoInstitucion" />   -->
+<!-- 		<columnOverride column="codigo_tipo_informe" property="codigoTipoInforme" /> -->
+<!-- 		<columnOverride column="codigo_persona_dirigido" property="codigoPersonaDirigido" /> -->
+<!-- 		<columnOverride column="codigo_persona_via" property="codigoPersonaVia" /> -->
+<!-- 		<columnOverride column="codigo_persona_de_01" property="codigoPersonaDe1" /> -->
+<!-- 		<columnOverride column="codigo_persona_de_02" property="codigoPersonaDe2" /> -->
+<!-- 		<columnOverride column="codigo_persona_de_03" property="codigoPersonaDe3" /> -->
+<!--		<columnOverride column="referencia" property="referencia" /> --> 
+<!-- 		<columnOverride column="fecha_registro" property="fechaRegistro" /> -->
+<!-- 		<columnOverride column="fecha_envio" property="fechaEnvio" /> -->
+<!--		<columnOverride column="diagnostico" property="referencia" /> --> 
+<!-- 		<columnOverride column="sugerencias" property="sugerencias" /> -->		
+<!--     </table> -->
+
+<!--     <table tableName="informes_detalle" domainObjectName="InformeDetalle" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_informe" property="codigoInforme" />		 -->
+<!-- 		<columnOverride column="referencia_caso" property="referenciaCaso" /> -->
+<!-- 		<columnOverride column="fecha_inicio" property="fechaInicio" /> -->
+<!-- 		<columnOverride column="fecha_fin" property="fechaFin" /> -->
+<!-- 		<columnOverride column="situacion_habitacional" property="situacionHabitacional" /> -->
+<!-- 		<columnOverride column="integracion_familiar" property="integracionFamiliar" /> -->
+<!-- 		<columnOverride column="desarrollo_afectivo" property="desarrolloAfectivo" /> -->
+<!-- 		<columnOverride column="historia_social" property="historiaSocial" /> -->
+<!-- 		<columnOverride column="situacion_actual" property="situacionActual" /> -->
+<!-- 		<columnOverride column="fuentes_informacion" property="fuentesInformacion" />   -->
+<!-- 		<columnOverride column="descripcion_caso" property="descripcionCaso" /> -->
+<!-- 		<columnOverride column="documentos_adjuntos" property="documentosAdjuntos" /> -->
+<!--     </table> -->
+
+<!--     <table tableName="informe_psicologico" domainObjectName="InformePsicologico" > -->
+<!--       	<property name="useActualColumnNames" value="true"/>       -->
+<!--       	<columnOverride column="codigo_informe_psico" property="codigoInformePsicologico" /> -->
+<!--       	<columnOverride column="codigo_kardex" property="codigoKardex" />      			 -->
+<!-- 		<columnOverride column="motivo_consulta" property="motivoConsulta" />   -->
+<!-- 		<columnOverride column="fecha_evaluacion" property="fechaEvaluacion" /> -->
+<!-- 		<columnOverride column="codigo_persona_evalua" property="codigoPersonaEvaluadora" /> -->
+<!-- 		<columnOverride column="instrumentos" property="instrumentos" />  -->
+<!-- 		<columnOverride column="antecedentes" property="antecedentes" />  -->
+<!-- 		<columnOverride column="aspectos_relevantes" property="aspectosRelevantes" /> -->
+<!-- 		<columnOverride column="conductas_observadas" property="conductasObservadas" /> -->
+<!-- 		<columnOverride column="res_motricidad_gruesa" property="respuestaMotricidadGruesa" /> -->
+<!-- 		<columnOverride column="res_motricidad_fino" property="respuestaMotricidadFino" /> -->
+<!-- 		<columnOverride column="res_audicion_lenguaje" property="respuestaAudicionLenguaje" /> -->
+<!-- 		<columnOverride column="res_personal_social" property="respuestaPersonalSocial" /> -->
+<!-- 		<columnOverride column="res_total" property="respuestaTotal" /> -->
+<!-- 		<columnOverride column="diagnostico" property="diagnostico" /> -->
+<!-- 		<columnOverride column="recomendaciones" property="recomendaciones" /> -->
+<!--     </table> -->
+
+    <table tableName="propiedades_tipos" domainObjectName="PropiedadTipo" >
+      	<property name="useActualColumnNames" value="true"/>      
+      	<columnOverride column="numero_propiedad_tipo" property="numeroPropiedadTipo" />		
+		<columnOverride column="nombre_propiedad_tipo" property="nombrePropiedadTipo" />  
+    </table>
+    
+    <table tableName="propiedades_historial_clinico" domainObjectName="PropiedadHistorialClinico" >
+      	<property name="useActualColumnNames" value="true"/>      
+      	<columnOverride column="numero_propiedad" property="numeroPropiedad" />
+      	<columnOverride column="numero_propiedad_tipo" property="numeroPropiedadTipo" />		
+		<columnOverride column="nombre_propiedad" property="nombrePropiedad" />  
+    </table>
+    
+    <table tableName="historia_clinico" domainObjectName="HistorialClinico" >
+      	<property name="useActualColumnNames" value="true"/>      
+      	<columnOverride column="numero_hc" property="numeroHistorialClinico" />
+      	<columnOverride column="idpersona" property="idPersona" />		
+		<columnOverride column="grupo_sanguinio" property="grupoSanguinio" />
+    </table>
+    
+    <table tableName="consulta" domainObjectName="Consulta" >
+      	<property name="useActualColumnNames" value="true"/>      
+      	<columnOverride column="numero_consulta" property="numeroConsulta" />
+      	<columnOverride column="numero_hc" property="numeroHistorialClinico" />
+      	<columnOverride column="fecha_consulta" property="fechaConsulta" />		
+		<columnOverride column="codigo_tipo_consulta" property="codigoTipoConsulta" />		
+    </table>
+    
+    <table tableName="historia_clinico_consulta_detalle" domainObjectName="HistorialClinicoConsultaDetalle" >
+      	<property name="useActualColumnNames" value="true"/>      
+      	<columnOverride column="numero_hc_consulta_detalle" property="numeroHCConsultaDetalle" />
+      	<columnOverride column="numero_hc" property="numeroHistorialClinico" />
+      	<columnOverride column="numero_propiedad_tipo" property="numeroPropiedadTipo" />		
+		<columnOverride column="numero_consulta" property="numeroConsulta" />		
+		<columnOverride column="numero_propiedad" property="numeroPropiedad" />
+		<columnOverride column="fecha_registro" property="fechaRegistro" />
+    </table>
+
+  </context>
+</generatorConfiguration>
