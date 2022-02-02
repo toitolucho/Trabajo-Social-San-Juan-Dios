@@ -3,10 +3,28 @@
  
  
  
- ### Sistem Modules
+ ### System Modules
  - User Administration.- Creates users for acces to the sistem
  ![Sistema de gestión de Usuarios](/Documentation/Images/users.png)
- - 
+ 
+- Budget Registration
+![Sistema de gestión de Usuarios](/Documentation/Images/Budged_item.png)
+
+- Employees Administration
+![Sistema de gestión de Usuarios](/Documentation/Images/Employees..png)
+
+- Geographical Location Administration
+![Sistema de gestión de Usuarios](/Documentation/Images/Geographic01.png)
+
+- Budget and Income Administration
+![Sistema de gestión de Usuarios](/Documentation/Images/in_out_admin.png)
+
+- Children’s Kardex Administration
+![Sistema de gestión de Usuarios](/Documentation/Images/personal_kardex.png)
+
+- Suppliers Administration
+![Sistema de gestión de Usuarios](/Documentation/Images/suppliers.png)
+
  
 ### Tecnologies
 - Programming Languaje : **JAVA**
